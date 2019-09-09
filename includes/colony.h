@@ -27,5 +27,6 @@ typedef struct		s_room
 }					t_room;
 
 char	*get_room_name(char *line);
-int		read_input(char **line);
+int	read_input(char **line);
+
 #endif
