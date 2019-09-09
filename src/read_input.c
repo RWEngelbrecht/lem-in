@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/09 09:09:00 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/09 14:28:13 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		is_command(char * line)
 	return (0);
 }
 
-int		read_input(char ** line)
+int		read_input(char **line)
 {
 	int start;
 	int end;
