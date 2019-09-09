@@ -15,7 +15,6 @@ A 1 0     (where A is room's name, 1 its x position, 0 its y position)
 
 ##end     (command specifying the next line as the end room)
 
-
 B 5 0
 
 C 9 0
@@ -35,7 +34,11 @@ The resulting "farm" will look like this:
 An example of the output:
 
 L1-C                (an ant moves from room 1 to room 2)
+
 L1-3 L2-2           
+
 L1-1 L2-3 L3-2
+
 L2-1 L3-3
+
 L3-1
