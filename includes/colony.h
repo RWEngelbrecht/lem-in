@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/09 09:39:59 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/09 14:27:57 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ typedef struct		s_room
 	int				ants;
 	struct s_room	*next;
 }					t_room;
+
+int		is_command(char * line);
 
 #endif
