@@ -15,7 +15,7 @@ MAKELIB = -C libft
 LIB = libft/libft.a
 FLGS = -Wall -Werror -Wextra
 DBFLG = -Wall -Werror -Wextra -g
-SRC = lem_in.c \
+SRC = lem-in.c \
 		$(LIB) \
 		src/*.c
 

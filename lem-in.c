@@ -15,6 +15,6 @@
 int main()
 {
 	char *line;
-
-	read_input(&line);
+	line = NULL;
+	get_room_name(line);
 }
