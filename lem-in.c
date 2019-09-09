@@ -3,11 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrheeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/05 11:28:52 by jrheeder         ###   ########.fr       */
+/*   Updated: 2019/09/09 09:41:47 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "includes/colony.h"
 
+int main()
+{
+	char *line;
+
+	read_input(&line);
+}
