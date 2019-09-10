@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/10 08:57:11 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 12:36:49 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ typedef struct		s_log
 
 
 char	*get_room_name(char *line);
-int	read_input(char **line);
+t_log	*read_input(char **line);
 
 #endif
