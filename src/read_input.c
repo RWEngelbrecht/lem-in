@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/10 16:26:11 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:37:29 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,17 @@ printf("end_line = %d\n", data->end_line);
 				end = 0;
 			}
 			data->rooms = (char**)malloc(sizeof(char*));
-			data->rooms[++j] = *line;
+			data->rooms[++j] = (char*)malloc(sizeof(char) * 128);
+			data->rooms[j] = *line;
 printf("room = %s\n", data->rooms[j]);
 		}
 		else if (is_link(*line))
 		{
  printf("gonna try assign (%s) now\n", *line);
-			data->rooms = (char**)malloc(sizeof(char*));
-			data->links[++k] = *line;
-// printf("links = %s\n", data->links[2]);
+			data->links = (char**)malloc(sizeof(char*));
+			data->rooms[++k] = (char*)malloc(sizeof(char) * 128);
+			data->links[k] = *line;
+ printf("links = %s\n", data->links[k]);
 		}
 		free(*line);
 		i++;
