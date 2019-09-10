@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/10 14:25:16 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:26:11 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ t_log		*read_input(char **line)
 	int k;
 
 	data = (t_log*)malloc(sizeof(t_log));
+	data->ant_amnt = 0;
+	data->end_line = 0;
+	data->start_line = 0;
+	data->rooms = NULL;
+	data->links = NULL;
 	start = 0;
 	end = 0;
 	i = 1;
@@ -112,22 +117,22 @@ printf("start_line = %d\n", data->start_line);
 printf("end_line = %d\n", data->end_line);
 				end = 0;
 			}
-			data->rooms[++j] = malloc(sizeof(char*) * ft_strlen(*line));
-			data->rooms[j] = *line;
+			data->rooms = (char**)malloc(sizeof(char*));
+			data->rooms[++j] = *line;
 printf("room = %s\n", data->rooms[j]);
 		}
 		else if (is_link(*line))
 		{
-printf("gonna try assign now\n");
-			data->links[++k] = malloc(sizeof(char*) * ft_strlen(*line));
-			data->links[k] = *line;
-printf("links = %s\n", data->links[k]);
+ printf("gonna try assign (%s) now\n", *line);
+			data->rooms = (char**)malloc(sizeof(char*));
+			data->links[++k] = *line;
+// printf("links = %s\n", data->links[2]);
 		}
+		free(*line);
 		i++;
 	}
 	return (data);
 }
-
 // int		read_input(char **line)
 // {
 // 	char **rooms;
