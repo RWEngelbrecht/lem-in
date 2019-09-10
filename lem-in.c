@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/09 09:41:47 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 07:25:53 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ int main()
 {
 	char *line;
 	line = NULL;
-	get_room_name(line);
+	read_input(&line);
 }
