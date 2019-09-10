@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/10 13:49:09 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 14:25:16 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		is_link(char *line)
 	{
 		if (*str == '-')
 			return (1);
+printf("not link so far\n");
 		str++;
 	}
 	return (0);
@@ -81,7 +82,7 @@ t_log		*read_input(char **line)
 	int j;
 	int k;
 
-	data = malloc(sizeof(t_log));
+	data = (t_log*)malloc(sizeof(t_log));
 	start = 0;
 	end = 0;
 	i = 1;
@@ -111,13 +112,15 @@ printf("start_line = %d\n", data->start_line);
 printf("end_line = %d\n", data->end_line);
 				end = 0;
 			}
-			data->rooms[++j] = *line;
+			data->rooms[++j] = malloc(sizeof(char*) * ft_strlen(*line));
+			data->rooms[j] = *line;
 printf("room = %s\n", data->rooms[j]);
 		}
 		else if (is_link(*line))
 		{
 printf("gonna try assign now\n");
-			data->links[++k] = ft_strdup(*line);
+			data->links[++k] = malloc(sizeof(char*) * ft_strlen(*line));
+			data->links[k] = *line;
 printf("links = %s\n", data->links[k]);
 		}
 		i++;
