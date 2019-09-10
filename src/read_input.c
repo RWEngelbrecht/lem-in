@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/10 08:25:11 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 13:40:13 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,42 +68,93 @@ char	*get_room_name(char *line)
 	return (retRoomName);
 }
 
-
-
-int		read_input(char **line)
+t_log		*read_input(char **line)
 {
-	char **rooms;
-	char **links;
+	t_log	*data;
 	int start;
 	int end;
-	int ants_amnt;
 	int i;
 	int j;
+	int k;
 
-	rooms = (char**)malloc(sizeof(char*) * 256);
-	links = (char**)malloc(sizeof(char*) * 256);
+	data = malloc(sizeof(t_log));
 	start = 0;
 	end = 0;
-	i = 0;
-	j = 0;
+	i = 1;
+	j = -1;
+	k = -1;
 	get_next_line(0, line);
-	ants_amnt = ft_atoi(*line);
+	data->ant_amnt = ft_atoi(*line);
+printf("ant amnt = %d\n", data->ant_amnt);
 	while (get_next_line(0, line))
 	{
-		if (is_command(*line))
-		{
-			if (ft_strequ(*line, "##start"))
-				start = 1;
-			else if (ft_strequ(*line, "##end"))
-				end = 1;
-		}
+printf("loop starting\n");
+		if (ft_strequ(*line, "##start"))
+			start = 1;
+		else if (ft_strequ(*line, "##end"))
+			end = 1;
 		else if (is_room(*line))
-			rooms[i] = *line;
+		{
+			if (start == 1)
+			{
+				data->start_line = i;
+printf("start_line = %d\n", data->start_line);
+				start = 0;
+			}
+			else if (end == 1)
+			{
+				data->end_line = i;
+printf("end_line = %d\n", data->end_line);
+				end = 0;
+			}
+			data->rooms[++j] = *line;
+printf("room = %s\n", data->rooms[j]);
+		}
 		else if (is_link(*line))
-			links[j] = *line;
+		{
+printf("gonna try assign now\n");
+			data->links[++k] = ft_strdup(*line);
+printf("links = %s\n", data->links[k]);
+		}
+		i++;
 	}
-	return (0);
+	return (data);
 }
+
+// int		read_input(char **line)
+// {
+// 	char **rooms;
+// 	char **links;
+// 	int start;
+// 	int end;
+// 	int ants_amnt;
+// 	int i;
+// 	int j;
+
+// 	rooms = (char**)malloc(sizeof(char*) * 256);
+// 	links = (char**)malloc(sizeof(char*) * 256);
+// 	start = 0;
+// 	end = 0;
+// 	i = 0;
+// 	j = 0;
+// 	get_next_line(0, line);
+// 	ants_amnt = ft_atoi(*line);
+// 	while (get_next_line(0, line))
+// 	{
+// 		if (is_command(*line))
+// 		{
+// 			if (ft_strequ(*line, "##start"))
+// 				start = 1;
+// 			else if (ft_strequ(*line, "##end"))
+// 				end = 1;
+// 		}
+// 		else if (is_room(*line))
+// 			rooms[i] = *line;
+// 		else if (is_link(*line))
+// 			links[j] = *line;
+// 	}
+// 	return (0);
+// }
 
 // t_room	*room_populate(char **line)
 // {
