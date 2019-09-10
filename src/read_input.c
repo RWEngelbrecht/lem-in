@@ -21,7 +21,7 @@
 
 #include <stdio.h>
 
-
+// Checking whether it is a command. By identifying if input has ##
 int		is_command(char *line)
 {
 	if (ft_strnequ(line, "##", 2))
@@ -29,6 +29,7 @@ int		is_command(char *line)
 	return (0);
 }
 
+// Checking whether input is a room. By checking if wordcount is three.
 int		is_room(char *line)
 {
 	if (ft_wordcount(line, ' ') == 3)
@@ -36,6 +37,7 @@ int		is_room(char *line)
 	return (0);
 }
 
+// Checking whether if there is a - between numbers. **Could cause negative ants to think it's a link
 int		is_link(char *line)
 {
 	char *str;
@@ -50,14 +52,16 @@ int		is_link(char *line)
 	return (0);
 }
 
+
+
 char	*get_room_name(char *line)
 {
 	char *retRoomName;
+	char** roomName;
 
 	retRoomName = NULL;
 	while (get_next_line(0, &line))
 	{
-		char** roomName;
 		if (ft_wordcount(line, ' ') == 3)
 		{
 			roomName = ft_strsplit(line, ' ');
@@ -98,10 +102,17 @@ int		read_input(char **line)
 				end = 1;
 		}
 		else if (is_room(*line))
-			rooms[i] = *line;
+			rooms[i++] = *line;
 		else if (is_link(*line))
-			links[j] = *line;
+			links[j++] = *line;
 	}
+	int a = 0 ,b = 0;
+	while (a < i && b < j)
+{
+		printf("%s\n %s\n", rooms[a], links[b]);
+		a++;
+		b++;
+}
 	return (0);
 }
 
