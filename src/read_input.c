@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/09 18:22:11 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 08:25:11 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,26 @@ int		is_command(char *line)
 	return (0);
 }
 
-// int		is_room(char *line)
-// {
-// 	if (ft_wordcount(line, ' ') == 3)
-// 		return (1);
-// 	return (0);
-// }
+int		is_room(char *line)
+{
+	if (ft_wordcount(line, ' ') == 3)
+		return (1);
+	return (0);
+}
 
-// int		is_link(char *line)
-// {
-// 	char *str;
+int		is_link(char *line)
+{
+	char *str;
 
-// 	str = line;
-// 	while (*str)
-// 	{
-// 		if (*str == '-')
-// 			return (1);
-// 		str++;
-// 	}
-// 	return (0);
-// }
+	str = line;
+	while (*str)
+	{
+		if (*str == '-')
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
 char	*get_room_name(char *line)
 {
@@ -80,16 +80,14 @@ int		read_input(char **line)
 	int i;
 	int j;
 
-	rooms = NULL;
-	links = NULL;
+	rooms = (char**)malloc(sizeof(char*) * 256);
+	links = (char**)malloc(sizeof(char*) * 256);
 	start = 0;
 	end = 0;
 	i = 0;
 	j = 0;
 	get_next_line(0, line);
-printf("*line == %s\n", *line);
 	ants_amnt = ft_atoi(*line);
-printf("ant amnt == %d\n", ants_amnt);
 	while (get_next_line(0, line))
 	{
 		if (is_command(*line))
@@ -98,16 +96,12 @@ printf("ant amnt == %d\n", ants_amnt);
 				start = 1;
 			else if (ft_strequ(*line, "##end"))
 				end = 1;
-printf("start == %d\nend == %d\n", start, end);
 		}
-		//does not work yet
-//		else if (is_room(*line))
-//			rooms[i] = *line;
-//		else if (is_link(*line))
-//			links[j] = *line;
-printf("rooms == %s\nlinks == %s\n", *rooms, *links);
+		else if (is_room(*line))
+			rooms[i] = *line;
+		else if (is_link(*line))
+			links[j] = *line;
 	}
-	//room_populate()
 	return (0);
 }
 
