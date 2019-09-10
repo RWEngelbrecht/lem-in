@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/09 09:39:59 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/10 08:57:11 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ typedef struct		s_room
 	int				ants;
 	struct s_room	*next;
 }					t_room;
+
+typedef struct		s_log
+{
+	int				ant_amnt;
+	int				start_line;
+	int				end_line;
+	char			**rooms;
+	char			**links;
+}					t_log;
+
 
 char	*get_room_name(char *line);
 int	read_input(char **line);
