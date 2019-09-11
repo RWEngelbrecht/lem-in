@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/11 12:31:20 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:40:25 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,8 @@ t_log		*read_input(char **line)
 	k = -1;
 	while (get_next_line(0, line))
 	{
-		if (ft_only_digits(*line))
+		if (ft_only_digits(*line) && phase == 0)
 		{
-			if (phase != 0)
-				return (0);
 			data->ant_amnt = ft_atoi(*line);
 			phase = 1;
 		}
@@ -102,8 +100,10 @@ t_log		*read_input(char **line)
 			start = 1;
 		else if (ft_strequ(*line, "##end") && phase == 1)
 			end = 1;
-		else if (is_room(*line) && phase == 1)
+		else if (is_room(*line))
 		{
+			if (phase != 1)
+				ERROR;
 			if (start == 1)
 			{
 				data->start_line = i;
@@ -119,10 +119,10 @@ t_log		*read_input(char **line)
 		}
 		else if (is_link(*line))
 		{
-			if (phase == 0)
-				return (0);
-			else if (phase == 1)
+			if (phase == 1)
 				phase = 2;
+			if (phase == 0 || !data->end_line || !data->start_line)
+				ERROR;
 			data->links[++k] = malloc(sizeof(char) * ft_strlen(*line) + 1);
 			data->links[k] = *line;
 		}
