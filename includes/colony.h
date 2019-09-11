@@ -6,13 +6,13 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/11 11:22:41 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:33:39 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-
+# define ERROR {ft_putstr_fd("Error\n", 2); exit(2);}
 #include "../libft/libft.h"
 
 typedef struct		s_room
