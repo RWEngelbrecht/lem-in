@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/11 08:31:59 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/11 12:21:06 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_log		*read_input(char **line)
 	t_log	*data;
 	int start;
 	int end;
+	int phase;
 	int i;
 	int j;
 	int k;
@@ -84,18 +85,24 @@ t_log		*read_input(char **line)
 	data->links = (char**)malloc(sizeof(char*) * 2048);
 	start = 0;
 	end = 0;
+	phase = 0;
 	i = 0;
 	j = -1;
 	k = -1;
 	while (get_next_line(0, line))
 	{
-		if (ft_only_digits(*line)) // phase 0
+		if (ft_only_digits(*line))
+		{
+			if (phase != 0)
+				return (0);
 			data->ant_amnt = ft_atoi(*line);
-		else if (ft_strequ(*line, "##start")) //begin phase 1
+			phase = 1;
+		}
+		else if (ft_strequ(*line, "##start") && phase == 1)
 			start = 1;
-		else if (ft_strequ(*line, "##end")) // end phase 1
+		else if (ft_strequ(*line, "##end") && phase == 1)
 			end = 1;
-		else if (is_room(*line))
+		else if (is_room(*line) && phase == 1)
 		{
 			if (start == 1)
 			{
@@ -112,6 +119,10 @@ t_log		*read_input(char **line)
 		}
 		else if (is_link(*line))
 		{
+			if (phase == 0)
+				return (0);
+			else if (phase == 1)
+				phase = 2;
 			data->links[++k] = malloc(sizeof(char) * ft_strlen(*line) + 1);
 			data->links[k] = *line;
 		}
