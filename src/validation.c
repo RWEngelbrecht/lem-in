@@ -43,17 +43,13 @@ int     check_name(t_log *data/*, int phase*/)
 
 }
 
-
-
-
-
 int     check_name_XY(t_log *data)
 {
     int i;
     int j;
     int k;
     char **roomName;
-
+    char test;
     i = 0;
     j = 0;
     k = 0;
