@@ -42,3 +42,21 @@ int     check_name(t_log *data/*, int phase*/)
     // need to check for valid phases
 
 }
+
+int     check_name_XY(t_log *data)
+{
+    int i;
+    int j;
+    int k;
+    char **roomName;
+
+    i = 0;
+    j = 0;
+    k = 0;
+    roomName = ft_strsplit(data->rooms[i], ' ');
+    while (roomName[i])
+    {
+        
+    }
+
+}
