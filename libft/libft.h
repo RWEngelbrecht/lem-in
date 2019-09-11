@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrheeder <jrheeder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 22:40:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/07/22 12:57:17 by jrheeder         ###   ########.fr       */
+/*   Updated: 2019/09/11 08:24:31 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_int_overflows(const char *str);
+int					ft_only_digits(char *str);
 
 #endif
