@@ -84,7 +84,7 @@ t_log		*read_input(char **line)
 	data->links = (char**)malloc(sizeof(char*) * 2048);
 	start = 0;
 	end = 0;
-	i = 1;
+	i = 0;
 	j = -1;
 	k = -1;
 	while (get_next_line(0, line))
