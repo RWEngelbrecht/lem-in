@@ -24,7 +24,7 @@
 // Checking whether it is a command. By identifying if input has ##
 int		is_command(char *line)
 {
-	if (ft_strnequ(line, "##", 2))
+	if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
 		return (1);
 	return (0);
 }
@@ -65,7 +65,7 @@ char	*get_room_name(char *line)
 			roomName = ft_strsplit(line, ' ');
 			retRoomName = roomName[0];
 		}
-		printf("%s\n", retRoomName);
+		//printf("%s\n", retRoomName);
 	}
 	return (retRoomName);
 }
@@ -89,11 +89,11 @@ t_log		*read_input(char **line)
 	k = -1;
 	while (get_next_line(0, line))
 	{
-		if (ft_only_digits(*line))
+		if (ft_only_digits(*line)) // phase 0
 			data->ant_amnt = ft_atoi(*line);
-		else if (ft_strequ(*line, "##start"))
+		else if (ft_strequ(*line, "##start")) //begin phase 1
 			start = 1;
-		else if (ft_strequ(*line, "##end"))
+		else if (ft_strequ(*line, "##end")) // end phase 1
 			end = 1;
 		else if (is_room(*line))
 		{

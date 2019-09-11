@@ -10,4 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/colony.h"
+#include <stdio.h>
+int     check_name(t_log *data/*, int phase*/)
+{
+    // iterators
+    int i;
+    int j;
+    int k;
 
+    i = 0, k = 0;
+
+    /*if (phase != 1)
+        return (0);*/
+    while (data->rooms[i])
+    {
+        j = i + 1;
+        while (data->rooms[j])
+        {
+            if (ft_strequ(data->rooms[i], data->rooms[j]))
+            {
+                return (0); // found duplicate.
+            }
+            j++;
+        }
+        i++;
+    }
+    return (1); // no duplicates found.
+    // need to check for duplicate names
+    // need to check for duplicate x and y cords
+    // need to check for valid phases
+
+}

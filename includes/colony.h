@@ -38,5 +38,6 @@ typedef struct		s_log
 
 char	*get_room_name(char *line);
 t_log	*read_input(char **line);
+int     check_name(t_log *data/*, int phase*/);
 
 #endif
