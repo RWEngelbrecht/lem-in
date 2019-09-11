@@ -43,6 +43,10 @@ int     check_name(t_log *data/*, int phase*/)
 
 }
 
+
+
+
+
 int     check_name_XY(t_log *data)
 {
     int i;

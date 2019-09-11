@@ -18,11 +18,10 @@ int main()
 	t_log *ret;
 	int i = 0;
 	int j = 0;
-	int valid = 69;
+	int valid;
 	line = NULL;
-	ret = NULL;
 	ret = read_input(&line);
-	valid = check_name(ret);
+	valid = check_name_XY(ret);
 	printf("VALID CHECK: %d\n", valid);
 //	printf("ant amnt = %d\nstart_line = %d\nend_line = %d\n", ret->ant_amnt, ret->start_line, ret->end_line);
 	while (ret->rooms[i])
