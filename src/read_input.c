@@ -6,7 +6,11 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/09/11 12:21:06 by rengelbr         ###   ########.fr       */
+=======
+/*   Updated: 2019/09/11 11:40:50 by rengelbr         ###   ########.fr       */
+>>>>>>> 0d28fd402646b34933b851ba0e0dd4be0f47f240
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +59,7 @@ int		is_link(char *line)
 char	*get_room_name(char *line)
 {
 	char *retRoomName;
-	char** roomName;
+	char**roomName;
 
 	retRoomName = NULL;
 	while (get_next_line(0, &line))
