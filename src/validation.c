@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrheeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/05 11:33:10 by jrheeder         ###   ########.fr       */
+/*   Updated: 2019/09/12 10:01:56 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,20 @@ int     check_name_XY(t_log *data)
     j = 1;
     while(data->rooms[i])
     {
-	roomName = ft_strsplit(data->rooms[i], ' ');
-	while (data->rooms[j])
-	{
+		roomName = ft_strsplit(data->rooms[i], ' ');
+		while (data->rooms[j])
+		{
 			roomNameComp = ft_strsplit(data->rooms[j], ' ');
-		printf("RN[1] %s, RNC[1] %s, RN2[2] %s RNC2[2] %s", roomName[1], roomNameComp[1], roomName[2], roomNameComp[2]);
-		if (roomName[1] == roomNameComp[1] && roomName[2] == roomNameComp[2])
-			return (0);
-		j++;
-	}
-	i++;
+			printf("RN[1] %s, RNC[1] %s, RN2[2] %s RNC2[2] %s", roomName[1], roomNameComp[1], roomName[2], roomNameComp[2]);
+			if (ft_strequ(roomName[1], roomNameComp[1])
+				&& ft_strequ(roomName[2], roomNameComp[2]))
+			{
+				ft_putstr_fd("Error\n", 2);
+				exit(2);
+			}
+			j++;
+		}
+		i++;
     }
     i = 0;
     while (roomName[i])
