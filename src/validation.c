@@ -59,7 +59,6 @@ int     check_name_XY(t_log *data)
 		while (data->rooms[j])
 		{
 			roomNameComp = ft_strsplit(data->rooms[j], ' ');
-			printf("RN[1] %s, RNC[1] %s, RN2[2] %s RNC2[2] %s", roomName[1], roomNameComp[1], roomName[2], roomNameComp[2]);
 			if (ft_strequ(roomName[1], roomNameComp[1])
 				&& ft_strequ(roomName[2], roomNameComp[2]))
 			{
@@ -71,9 +70,5 @@ int     check_name_XY(t_log *data)
 		i++;
     }
     i = 0;
-    while (roomName[i])
-    {
-	printf("%s\n", roomName[i++]);
-    }
-	return (1);
+    return (1);
 }
