@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 
 #include "../includes/colony.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 int     check_name(t_log *data/*, int phase*/)
 {
     // iterators
     int i;
     int j;
-    int k;
 
-    i = 0, k = 0;
+    i = 0;
 
     /*if (phase != 1)
         return (0);*/
@@ -47,16 +47,29 @@ int     check_name_XY(t_log *data)
 {
     int i;
     int j;
-    int k;
     char **roomName;
-    char test;
+    char **roomNameComp;
+    roomNameComp = NULL;
+    roomName = NULL;
     i = 0;
-    j = 0;
-    k = 0;
-    roomName = ft_strsplit(data->rooms[i], ' ');
+    j = 1;
+    while(data->rooms[i])
+    {
+	roomName = ft_strsplit(data->rooms[i], ' ');
+	while (data->rooms[j])
+	{
+			roomNameComp = ft_strsplit(data->rooms[j], ' ');
+		printf("RN[1] %s, RNC[1] %s, RN2[2] %s RNC2[2] %s", roomName[1], roomNameComp[1], roomName[2], roomNameComp[2]);
+		if (roomName[1] == roomNameComp[1] && roomName[2] == roomNameComp[2])
+			return (0);
+		j++;
+	}
+	i++;
+    }
+    i = 0;
     while (roomName[i])
     {
-        
+	printf("%s\n", roomName[i++]);
     }
-
+	return (1);
 }
