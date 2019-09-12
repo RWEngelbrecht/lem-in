@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 12:24:27 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 12:30:44 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main()
 
 	line = NULL;
 	ret = read_input(&line);
-	validate(ret);
+	validate(&ret);
 while (ret->rooms[i])
 {
 	printf("rooms[%d] = %s\n", i, ret->rooms[i]);
