@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/11 13:33:39 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 11:11:56 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ typedef struct		s_log
 }					t_log;
 
 
-char	*get_room_name(char *line);
+char	*get_room_name(char *room);
 t_log	*read_input(char **line);
-int	check_name(t_log *data/*, int phase*/);
-int	check_name_XY(t_log *data);
+int		check_name(t_log *data/*, int phase*/);
+int		check_name_XY(t_log *data);
+int		check_links(t_log *data);
+
 #endif
