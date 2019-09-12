@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 11:09:06 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 11:30:35 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int		check_links(t_log *data)
 {
 	int i;
 	int j;
-	int k;
 	char **names;
 	char **curLink;
 
@@ -95,10 +94,10 @@ int		check_links(t_log *data)
 	j = 0;
 	names = (char**)malloc(sizeof(char*));
 	curLink = NULL;
-	while (data->rooms[k])
+	while (data->rooms[j])
 	{
-		names[k] = get_room_name(data->rooms[k]);
-		k++;
+		names[j] = get_room_name(data->rooms[j]);
+		j++;
 	}
 	while (data->links[i])
 	{
@@ -108,17 +107,10 @@ int		check_links(t_log *data)
 		{
 			if (ft_strequ(curLink[0], names[j]))
 				break;
+			else if (ft_strequ(curLink[1], names[j]))
+				break;
 			j++;
 			if (!names[j])
-				ERROR;
-		}
-		j = 0;
-		while (names[j])
-		{
-			if (ft_strequ(curLink[1], names[k]))
-				break;
-			k++;
-			if (!names[k])
 				ERROR;
 		}
 		i++;
