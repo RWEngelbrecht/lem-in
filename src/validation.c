@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 11:55:53 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 12:24:05 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int     check_name_XY(t_log *data)
 			roomNameComp = ft_strsplit(data->rooms[j], ' ');
 			if (ft_strequ(roomName[1], roomNameComp[1])
 					&& ft_strequ(roomName[2], roomNameComp[2]))
-				ERROR;
+				return (0);
 			j++;
 		}
 		i++;
@@ -111,9 +111,19 @@ int		check_links(t_log *data)
 				break;
 			j++;
 			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
-				ERROR;
+				return (0);
 		}
 		i++;
 	}
 	return (1);
+}
+
+void		validate(t_log *data)
+{
+	if (!(check_name(data)))
+		ERROR;
+	if (!(check_name_XY(data)))
+		ERROR;
+	if (!(check_links(data)))
+		ERROR;
 }
