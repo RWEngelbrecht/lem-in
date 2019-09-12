@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/11 13:40:25 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 10:24:59 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,6 @@ int		is_link(char *line)
 		str++;
 	}
 	return (0);
-}
-
-char	*get_room_name(char *line)
-{
-	char *retRoomName;
-	char**roomName;
-
-	retRoomName = NULL;
-	while (get_next_line(0, &line))
-	{
-		if (ft_wordcount(line, ' ') == 3)
-		{
-			roomName = ft_strsplit(line, ' ');
-			retRoomName = roomName[0];
-		}
-		//printf("%s\n", retRoomName);
-	}
-	return (retRoomName);
 }
 
 t_log		*read_input(char **line)
