@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 11:11:56 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 12:15:36 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 
 typedef struct		s_room
 {
-	int				start;
-	int				end;
+	unsigned int	room_type : 2;
 	char			*name;
-	int				x;
-	int				y;
-	int				ants;
+	unsigned int	x : 8;
+	unsigned int	y : 8;
+	unsigned int	visited;
 	struct s_room	*next;
 }					t_room;
 
