@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 11:30:35 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 11:55:53 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int		check_links(t_log *data)
 			else if (ft_strequ(curLink[1], names[j]))
 				break;
 			j++;
-			if (!names[j])
+			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
 				ERROR;
 		}
 		i++;
