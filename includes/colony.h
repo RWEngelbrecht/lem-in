@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 12:31:05 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 13:22:09 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct		s_room
 	unsigned int	x : 8;
 	unsigned int	y : 8;
 	unsigned int	visited;
-	struct s_room	*next;
+	struct s_room	**room_links;
 }					t_room;
 
 typedef struct		s_log
