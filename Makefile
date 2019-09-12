@@ -16,8 +16,8 @@ LIB = libft/libft.a
 FLGS = -Wall -Werror -Wextra
 DBFLG = -Wall -Werror -Wextra -g
 SRC = lem-in.c \
-		$(LIB) \
-		src/*.c
+	$(LIB) \
+	src/*.c
 
 all: $(MAKELIB) $(NAME)
 
@@ -25,10 +25,10 @@ $(MAKELIB):
 	@$(MAKE) $(MAKELIB)
 
 $(NAME):
-	gcc $(FLGS) $(SRC) -o $(NAME)
+	gcc $(FLGS) $(SRC) libft/libft.a -o $(NAME)
 
 db:
-	gcc $(DBFLG) $(SRC) -o $(NAME)
+	gcc $(DBFLG) $(SRC) libft/libft.a -o $(NAME)
 
 clean:
 	rm -fr $(NAME) $(NAME).dSYM
