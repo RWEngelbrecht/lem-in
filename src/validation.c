@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 12:24:05 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/12 12:33:30 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,14 @@ int		check_links(t_log *data)
 		{
 			if (ft_strequ(curLink[0], names[j]))
 				break;
-			else if (ft_strequ(curLink[1], names[j]))
+			j++;
+			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
+				return (0);
+		}
+		j = 0;
+		while (names[j])
+		{
+			if (ft_strequ(curLink[1], names[j]))
 				break;
 			j++;
 			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
@@ -118,12 +125,12 @@ int		check_links(t_log *data)
 	return (1);
 }
 
-void		validate(t_log *data)
+void		validate(t_log **data)
 {
-	if (!(check_name(data)))
+	if (!(check_links(*data)))
 		ERROR;
-	if (!(check_name_XY(data)))
+	if (!(check_name(*data)))
 		ERROR;
-	if (!(check_links(data)))
+	if (!(check_name_XY(*data)))
 		ERROR;
 }
