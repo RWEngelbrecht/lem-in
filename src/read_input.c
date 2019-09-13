@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/12 10:24:59 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/13 10:16:17 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,15 @@ t_log		*read_input(char **line)
 	int start;
 	int end;
 	int phase;
-	int i;
 	int j;
 	int k;
 
 	data = (t_log*)malloc(sizeof(t_log));
 	data->rooms = (char**)malloc(sizeof(char*) * 2048);
 	data->links = (char**)malloc(sizeof(char*) * 2048);
-	start = 0;
-	end = 0;
+	start = -1;
+	end = -1;
 	phase = 0;
-	i = 0;
 	j = -1;
 	k = -1;
 	while (get_next_line(0, line))
@@ -86,29 +84,28 @@ t_log		*read_input(char **line)
 		{
 			if (phase != 1)
 				ERROR;
+			data->rooms[++j] = malloc(sizeof(char) * ft_strlen(*line) + 1);
+			data->rooms[j] = *line;
 			if (start == 1)
 			{
-				data->start_line = i;
+				data->start_index = j;
 				start = 0;
 			}
 			else if (end == 1)
 			{
-				data->end_line = i;
+				data->end_index = j;
 				end = 0;
 			}
-			data->rooms[++j] = malloc(sizeof(char) * ft_strlen(*line) + 1);
-			data->rooms[j] = *line;
 		}
 		else if (is_link(*line))
 		{
 			if (phase == 1)
 				phase = 2;
-			if (phase == 0 || !data->end_line || !data->start_line)
+			if (phase == 0 || start < 0 || end < 0)
 				ERROR;
 			data->links[++k] = malloc(sizeof(char) * ft_strlen(*line) + 1);
 			data->links[k] = *line;
 		}
-		i++;
 	}
 	return (data);
 }
