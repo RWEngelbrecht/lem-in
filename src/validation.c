@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/12 12:33:30 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/13 10:15:43 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_room_name(char *room)
 	return (retRoomName);
 }
 
-int     check_name(t_log *data/*, int phase*/)
+int     check_name(t_log *data) //Check if rooms start with 'L' or '#'
 {
     // iterators
     int i;
