@@ -6,14 +6,14 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/13 11:33:20 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/13 14:04:37 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/colony.h"
 #include "../libft/libft.h"
 #include <stdio.h>
-//finds every link in all_links that references name
+//finds every link in all_links that references name, returns it in 2d array
 char	**find_linked_rooms(char *name, char **all_links)
 {
 	unsigned int	name_len;
@@ -37,12 +37,37 @@ char	**find_linked_rooms(char *name, char **all_links)
 	return (connected);
 }
 
-//Takes current maze, name of room to add and 2D array with refs to all
-//rooms it links to as well as type (i.e. start(0), end(2) or normal(1))
-// t_room	*new_room(t_room *maze, char *name, char **links, unsigned int type)
-// {
+int		get_coordinate(char *room, char type)
+{
+	int		i;
+	int		j;
+	int		x_y;
+	char	**coordinates;
 
-// }
+	i = 0;
+	j = 0;
+	x_y = 0;
+	coordinates = ft_strsplit(room, ' ');
+	if (type == 'x')
+		x_y = ft_atoi(coordinates[1]);
+	else if (type == 'y')
+		x_y = ft_atoi(coordinates[2]);
+	return (x_y);
+}
+
+//Takes current maze, name + coordinates of room to add and 2D array
+//with refs to all rooms it links to as well as
+//type (i.e. start(0), end(2) or normal(1))
+t_room	*new_room(t_room *maze, char *room, char **links, unsigned int type)
+{
+	maze = malloc(sizeof(t_room));
+	maze->room_type = type;
+	maze->name = get_room_name(room);
+	maze->x = get_coordinate(room, 'x');
+	maze->y = get_coordinate(room, 'y');
+	maze->visited = 0;
+	maze->room_links = NULL;
+}
 
 void	map_links(t_log *data)
 {
@@ -53,7 +78,7 @@ void	map_links(t_log *data)
 	char *start_room;
 	char *end_room;
 
-	maze = malloc(sizeof(t_room));
+	maze = NULL;
 	i = 0;
 	cur_links = (char**)malloc(sizeof(sizeof(char*)));
 	start_room = data->rooms[data->start_index];
