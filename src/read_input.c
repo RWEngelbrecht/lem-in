@@ -29,6 +29,20 @@ int		is_command(char *line)
 	return (0);
 }
 
+int		is_comment(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '#' && line[i + 1] != '#')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 // Checking whether input is a room. By checking if wordcount is three.
 int		is_room(char *line)
 {
@@ -71,6 +85,7 @@ t_log		*read_input(char *line)
 	k = -1;
 	while (get_next_line(0, &line))
 	{
+		ft_putendl(line);
 		if (ft_only_digits(line) && phase == 0)
 		{
 			data->ant_amnt = ft_atoi(line);
@@ -104,10 +119,15 @@ t_log		*read_input(char *line)
 				ORDER_ERROR;
 			data->links[++k] = ft_strdup(line);
 		}
+		else if (is_comment(line))
+		{
+			ft_putstr(line);
+		}
 		free(line);
 	}
 	data->rooms[++j] = 0;
 	data->links[++k] = 0;
+	ft_putchar('\n');
 	return (data);
 }
 

@@ -38,7 +38,7 @@ printf("validating input\n");
 	validate(ret);
 printf("input validated\n");
 printf("mapping input\n");
-	map_links(ret);
+	connect_links(ret);
 printf("input mapped\n");
 	//valid = check_name_XY(ret);
 //printf("VALID CHECK: %d\n", check_links(ret));

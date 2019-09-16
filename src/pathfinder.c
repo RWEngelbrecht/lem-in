@@ -75,7 +75,7 @@ t_room	*new_room(char *room, /*char **links, */unsigned int type)
 	return (maze);
 }
 
-void	map_links(t_log *data)
+void	connect_links(t_log *data)
 {
 	t_room *maze;
 	int i;
