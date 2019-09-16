@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/16 09:29:12 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 13:39:02 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		is_link(char *line)
 	return (0);
 }
 
-t_log		*read_input(char **line)
+t_log		*read_input(char *line)
 {
 	t_log	*data;
 	int start;
@@ -62,30 +62,29 @@ t_log		*read_input(char **line)
 	int k;
 
 	data = (t_log*)malloc(sizeof(t_log));
-	data->rooms = (char**)malloc(sizeof(char*) * 255);
-	data->links = (char**)malloc(sizeof(char*) * 255);
+	data->rooms = (char**)malloc(sizeof(char*) * 2048);
+	data->links = (char**)malloc(sizeof(char*) * 2048);
 	start = -1;
 	end = -1;
 	phase = 0;
 	j = -1;
 	k = -1;
-	while (get_next_line(0, line))
+	while (get_next_line(0, &line))
 	{
-		if (ft_only_digits(*line) && phase == 0)
+		if (ft_only_digits(line) && phase == 0)
 		{
-			data->ant_amnt = ft_atoi(*line);
+			data->ant_amnt = ft_atoi(line);
 			phase = 1;
 		}
-		else if (ft_strequ(*line, "##start") && phase == 1)
+		else if (ft_strequ(line, "##start") && phase == 1)
 			start = 1;
-		else if (ft_strequ(*line, "##end") && phase == 1)
+		else if (ft_strequ(line, "##end") && phase == 1)
 			end = 1;
-		else if (is_room(*line))
+		else if (is_room(line))
 		{
 			if (phase != 1)
 				ORDER_ERROR;
-			data->rooms[++j] = malloc(sizeof(char) * ft_strlen(*line) + 1);
-			data->rooms[j] = *line;
+			data->rooms[++j] = ft_strdup(line);
 			if (start == 1)
 			{
 				data->start_index = j;
@@ -97,16 +96,18 @@ t_log		*read_input(char **line)
 				end = 0;
 			}
 		}
-		else if (is_link(*line))
+		else if (is_link(line))
 		{
 			if (phase == 1)
 				phase = 2;
 			if (phase == 0 || start < 0 || end < 0)
 				ORDER_ERROR;
-			data->links[++k] = malloc(sizeof(char) * ft_strlen(*line) + 1);
-			data->links[k] = *line;
+			data->links[++k] = ft_strdup(line);
 		}
+		free(line);
 	}
+	data->rooms[++j] = 0;
+	data->links[++k] = 0;
 	return (data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/16 09:47:52 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 13:50:47 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 char	*get_room_name(char *room)
 {
-	char *retRoomName;
-	char**roomName;
+	char	*retRoomName;
+	char	**roomName;
 
 	roomName = ft_strsplit(room, ' ');
-	retRoomName = roomName[0];
+//	printf("room = %s\nroomName[0] = %s\n", room, roomName[0]);
+	retRoomName = ft_strdup(roomName[0]);
 	return (retRoomName);
 }
 
@@ -87,64 +88,88 @@ int		check_links(t_log *data)
 {
 	int i;
 	int j;
-	char **names;
-	char **curLink;
+	int k;
+	int linkAmnt;
+	char *names;
+	char *curLink;
+	char **linkNames;
 
 	i = 0;
 	j = 0;
-	names = (char**)malloc(sizeof(char*));
+	k = 0;
+	linkAmnt = 0;
+	while (data->links[linkAmnt])
+		linkAmnt++;
+printf("linkAmnt == %d\n", linkAmnt);
+	names = NULL;
 	curLink = NULL;
-	while (data->rooms[j])
+	// while (data->rooms[j])
+	// {
+	// 	names[j] = get_room_name(data->rooms[j]);
+	// 	j++;
+	// }
+	while (i < linkAmnt)
 	{
-		names[j] = get_room_name(data->rooms[j]);
-		j++;
-	}
-	while (data->links[i])
-	{
-		curLink = ft_strsplit(data->links[i], '-');
+ printf("data->links[%d] == %s\n", i, data->links[i]);
+		curLink = ft_strdup(data->links[i]);
+		linkNames = ft_strsplit(curLink, '-');
 		j = 0;
-		while (names[j])
+		while (data->rooms[j])
 		{
-printf("curLink[0] == %s\n", curLink[0]);
-printf("names[%d] == %s\n", j, names[j]);
-			if (ft_strequ(curLink[0], names[j]))
+printf("1: linkNames[0] = %s\n1: linkNames[1] = %s\n", linkNames[0], linkNames[1]);
+			names = get_room_name(data->rooms[j]);
+printf("1: names = %s\n", names);
+			if (ft_strequ(names, linkNames[0]))
+			{
+				k = 0;
+				while (data->rooms[k])
+				{
+					names = get_room_name(data->rooms[k]);
+					printf("3: names = %s\n", names);
+					if (ft_strequ(names, linkNames[1]))
+						break;
+					k++;
+					if (!data->rooms[k])
+ 						return (0);
+				}
 				break;
-			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
-				return (0);
+			}
 			j++;
+			if (!data->rooms[j])
+ 				return (0);
 		}
-		j = 0;
-		while (names[j])
-		{
-printf("curLink[1] == %s\n", curLink[1]);
-printf("names[%d] == %s\n", j, names[j]);
-			if (ft_strequ(curLink[1], names[j]))
-				break;
-			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
-				return (0);
-			j++;
-		}
-printf("links fine\n");
-		free(curLink);
 		i++;
+// 		j = 0;
+// 		while (data->rooms[j])
+// 		{
+// //printf("linkNames[0] = %s\nlinkNames[1] = %s\n", linkNames[0], linkNames[1]);
+// 			names = get_room_name(data->rooms[j]);
+// //printf("names = %s\n", names);
+// 			if (ft_strequ(names, linkNames[1]))
+// 				break;
+// 			j++;
+// 			if (!data->rooms[j])
+//  				return (0);
+//		free(curLink);
+printf("links fine\n");
 	}
 	return (1);
 }
 
-void		validate(t_log **data)
+void		validate(t_log *data)
 {
 printf("checking links\n");
-	if (!(check_links(*data)))
+	if (!(check_links(data)))
 	{
-printf("links fine\n");
 		LINKS_ERROR;
 	}
+printf("links fine\n");
 printf("checking names\n");
-	if (!(check_name(*data)))
+	if (!(check_name(data)))
 		NAME_ERROR;
 printf("names fine\n");
 printf("checking XY\n");
-	if (!(check_name_XY(*data)))
+	if (!(check_name_XY(data)))
 		XY_ERROR;
 printf("XY fine\n");
 }

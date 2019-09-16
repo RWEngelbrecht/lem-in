@@ -5,9 +5,11 @@ room2 1 2
 stRoom 5 1
 room3 0 9
 ##end
-endRoom 8 7
+Room4 8 7
+room5 5 9
 stRoom-room1
 stRoom-room2
 room1-room3
 room2-room3
-room3-endRoom
+room3-Room4
+room5-Room4

@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/16 09:48:29 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 12:56:49 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main()
 
 	line = NULL;
 printf("reading input\n");
-	ret = read_input(&line);
+	ret = read_input(line);
 printf("input read\n");
 printf("validating input\n");
 // while (ret->rooms[i])
@@ -35,7 +35,7 @@ printf("validating input\n");
 // 	printf("links[%d] = %s\n", j, ret->links[j]);
 // 	j++;
 // }
-	validate(&ret);
+	validate(ret);
 printf("input validated\n");
 printf("mapping input\n");
 	map_links(ret);
