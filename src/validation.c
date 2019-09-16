@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/13 10:15:43 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 09:47:52 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,21 +105,27 @@ int		check_links(t_log *data)
 		j = 0;
 		while (names[j])
 		{
+printf("curLink[0] == %s\n", curLink[0]);
+printf("names[%d] == %s\n", j, names[j]);
 			if (ft_strequ(curLink[0], names[j]))
 				break;
-			j++;
 			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
 				return (0);
+			j++;
 		}
 		j = 0;
 		while (names[j])
 		{
+printf("curLink[1] == %s\n", curLink[1]);
+printf("names[%d] == %s\n", j, names[j]);
 			if (ft_strequ(curLink[1], names[j]))
 				break;
-			j++;
 			if (!names[j] || ft_strequ(curLink[0], curLink[1]))
 				return (0);
+			j++;
 		}
+printf("links fine\n");
+		free(curLink);
 		i++;
 	}
 	return (1);
@@ -127,10 +133,18 @@ int		check_links(t_log *data)
 
 void		validate(t_log **data)
 {
+printf("checking links\n");
 	if (!(check_links(*data)))
-		ERROR;
+	{
+printf("links fine\n");
+		LINKS_ERROR;
+	}
+printf("checking names\n");
 	if (!(check_name(*data)))
-		ERROR;
+		NAME_ERROR;
+printf("names fine\n");
+printf("checking XY\n");
 	if (!(check_name_XY(*data)))
-		ERROR;
+		XY_ERROR;
+printf("XY fine\n");
 }

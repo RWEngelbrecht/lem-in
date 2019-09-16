@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/13 10:19:09 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 09:29:12 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ t_log		*read_input(char **line)
 	int k;
 
 	data = (t_log*)malloc(sizeof(t_log));
-	data->rooms = (char**)malloc(sizeof(char*) * 2048);
-	data->links = (char**)malloc(sizeof(char*) * 2048);
+	data->rooms = (char**)malloc(sizeof(char*) * 255);
+	data->links = (char**)malloc(sizeof(char*) * 255);
 	start = -1;
 	end = -1;
 	phase = 0;
@@ -83,7 +83,7 @@ t_log		*read_input(char **line)
 		else if (is_room(*line))
 		{
 			if (phase != 1)
-				ERROR;
+				ORDER_ERROR;
 			data->rooms[++j] = malloc(sizeof(char) * ft_strlen(*line) + 1);
 			data->rooms[j] = *line;
 			if (start == 1)
@@ -102,7 +102,7 @@ t_log		*read_input(char **line)
 			if (phase == 1)
 				phase = 2;
 			if (phase == 0 || start < 0 || end < 0)
-				ERROR;
+				ORDER_ERROR;
 			data->links[++k] = malloc(sizeof(char) * ft_strlen(*line) + 1);
 			data->links[k] = *line;
 		}

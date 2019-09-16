@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   colony.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/13 10:27:40 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 09:01:55 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define ERROR {ft_putstr_fd("Error\n", 2); exit(2);}
+# define NAME_ERROR {ft_putstr_fd("Error: Room names incorrect\n", 2); exit(2);}
+# define LINKS_ERROR {ft_putstr_fd("Error: Room links incorrect\n", 2); exit(2);}
+# define XY_ERROR {ft_putstr_fd("Error: Room coordinates incorrect\n", 2); exit(2);}
+# define ORDER_ERROR {ft_putstr_fd("Error: Incorrect order in input\n", 2); exit(2);}
 #include "../libft/libft.h"
 
 typedef struct		s_room

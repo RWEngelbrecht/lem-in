@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinder.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/13 14:04:37 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 08:57:28 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	**find_linked_rooms(char *name, char **all_links)
 	return (connected);
 }
 
+// void	add_room_links(t_room *maze)
+
 int		get_coordinate(char *room, char type)
 {
 	int		i;
@@ -58,8 +60,10 @@ int		get_coordinate(char *room, char type)
 //Takes current maze, name + coordinates of room to add and 2D array
 //with refs to all rooms it links to as well as
 //type (i.e. start(0), end(2) or normal(1))
-t_room	*new_room(t_room *maze, char *room, char **links, unsigned int type)
+t_room	*new_room(char *room, /*char **links, */unsigned int type)
 {
+	t_room *maze;
+
 	maze = malloc(sizeof(t_room));
 	maze->room_type = type;
 	maze->name = get_room_name(room);
@@ -67,6 +71,8 @@ t_room	*new_room(t_room *maze, char *room, char **links, unsigned int type)
 	maze->y = get_coordinate(room, 'y');
 	maze->visited = 0;
 	maze->room_links = NULL;
+
+	return (maze);
 }
 
 void	map_links(t_log *data)
@@ -78,6 +84,7 @@ void	map_links(t_log *data)
 	char *start_room;
 	char *end_room;
 
+printf("reached here\n");
 	maze = NULL;
 	i = 0;
 	cur_links = (char**)malloc(sizeof(sizeof(char*)));
@@ -88,11 +95,11 @@ void	map_links(t_log *data)
 		room_name = get_room_name(data->rooms[i]);
 		cur_links = find_linked_rooms(room_name, data->links);
 		// if (i == data->start_index)
-		// 	maze = new_room(maze, data->rooms[i], cur_links, 0);
+		// 	maze = new_room(data->rooms[i], /*cur_links, */0);
 		// else if (i == data->end_index)
-		// 	maze = new_room(maze, data->rooms[i], cur_links, 2);
+		// 	maze = new_room(data->rooms[i], /*cur_links, */2);
 		// else
-		// 	maze = new_room(maze, data->rooms[i], cur_links, 1);
+		// 	maze = new_room(data->rooms[i], /*cur_links, */1);
 		i++;
 	}
 	i = 0;
