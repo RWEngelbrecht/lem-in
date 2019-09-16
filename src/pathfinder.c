@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/16 08:57:28 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:02:09 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	map_links(t_log *data)
 	char *start_room;
 	char *end_room;
 
-printf("reached here\n");
 	maze = NULL;
 	i = 0;
 	cur_links = (char**)malloc(sizeof(sizeof(char*)));
@@ -102,10 +101,10 @@ printf("reached here\n");
 		// 	maze = new_room(data->rooms[i], /*cur_links, */1);
 		i++;
 	}
-	i = 0;
-	while (cur_links[i])
-	{
-		printf("cur_links[%d] == %s\n", i, cur_links[i]);
-		i++;
-	}
+	// i = 0;
+	// while (cur_links[i])
+	// {
+	// 	printf("cur_links[%d] == %s\n", i, cur_links[i]);
+	// 	i++;
+	// }
 }

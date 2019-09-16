@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/16 13:50:47 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:00:20 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ printf("linkAmnt == %d\n", linkAmnt);
 		j = 0;
 		while (data->rooms[j])
 		{
-printf("1: linkNames[0] = %s\n1: linkNames[1] = %s\n", linkNames[0], linkNames[1]);
+printf("1: linkNames[0] = %s\n", linkNames[0]);
 			names = get_room_name(data->rooms[j]);
 printf("1: names = %s\n", names);
 			if (ft_strequ(names, linkNames[0]))
@@ -125,7 +125,8 @@ printf("1: names = %s\n", names);
 				while (data->rooms[k])
 				{
 					names = get_room_name(data->rooms[k]);
-					printf("3: names = %s\n", names);
+					printf("2: linkNames[1] = %s\n", linkNames[1]);
+					printf("2: names = %s\n", names);
 					if (ft_strequ(names, linkNames[1]))
 						break;
 					k++;
@@ -151,7 +152,6 @@ printf("1: names = %s\n", names);
 // 			if (!data->rooms[j])
 //  				return (0);
 //		free(curLink);
-printf("links fine\n");
 	}
 	return (1);
 }
@@ -160,9 +160,7 @@ void		validate(t_log *data)
 {
 printf("checking links\n");
 	if (!(check_links(data)))
-	{
 		LINKS_ERROR;
-	}
 printf("links fine\n");
 printf("checking names\n");
 	if (!(check_name(data)))
