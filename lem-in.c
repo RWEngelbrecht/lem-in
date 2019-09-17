@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/16 12:56:49 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/17 07:16:34 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main()
 {
 	char *line;
 	t_log *ret;
+	t_room *maze;
 	// int i = 0;
 	// int j = 0;
 //	int valid;
@@ -38,7 +39,7 @@ printf("validating input\n");
 	validate(ret);
 printf("input validated\n");
 printf("mapping input\n");
-	connect_links(ret);
+	maze = connect_links(ret);
 printf("input mapped\n");
 	//valid = check_name_XY(ret);
 //printf("VALID CHECK: %d\n", check_links(ret));
