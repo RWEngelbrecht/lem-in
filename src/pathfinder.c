@@ -63,7 +63,7 @@ int		get_coordinate(t_str room, char type)
 //type (i.e. start(0), end(2) or normal(1))
 t_room	*new_maze(t_str room, unsigned int type, t_log *data, t_str *cur_links)
 {
-	t_room	**maze;
+	t_room	*maze;
 	t_room	*temp;
 	int i;
 	int j;
@@ -71,22 +71,32 @@ t_room	*new_maze(t_str room, unsigned int type, t_log *data, t_str *cur_links)
 	char **link_name;
 
 	k = 0;
-	maze = malloc(sizeof(t_room));
-	(*maze)->room_type = type;
-	(*maze)->name = ft_strdup(room);
-	(*maze)->x = get_coordinate(room, 'x');
-	(*maze)->y = get_coordinate(room, 'y');
-	(*maze)->visited = 0;
+	j = 0; //mm
+printf("starting\n");
+	maze = malloc(sizeof(t_room*));
+printf("room : %s\n type : %d\n cur_links : %s\ncur_links : %s\n", room, type, cur_links[0], cur_links[1]);
+	(maze)->room_type = (unsigned int)malloc(sizeof(unsigned int)*200);
+	(maze)->room_type = type;
+printf("does it do this though?\n");
+	(maze)->name = ft_strdup(room);
+	(maze)->x = get_coordinate(room, 'x');
+	(maze)->y = get_coordinate(room, 'y');
+	(maze)->visited = 0;
+	(maze)->room_links = NULL;
 	while (cur_links[k])
 	{
 		temp = malloc(sizeof(t_room));
 		i = 0;
-		j = 0;
 		link_name = ft_strsplit(cur_links[j], '-');
+printf("link_name: %s\n", link_name[0]);
+printf("link_name: %s\n", link_name[1]);
 		while (data->rooms[i])
 		{
 			if (ft_strequ(link_name[1], get_room_name(data->rooms[i])))
+			{
 				break;
+printf("GRN: %s\n", get_room_name(data->rooms[i]));
+			}
 			i++;
 		}
 		if (i == data->start_index)
@@ -96,15 +106,18 @@ t_room	*new_maze(t_str room, unsigned int type, t_log *data, t_str *cur_links)
 		else
 			temp->room_type = 2;
 		temp->name = ft_strdup(*link_name);
+printf("t->n ft_sd(ln):%s\n", temp->name);
 		temp->x = get_coordinate(data->rooms[i], 'x');
+printf("x %d\n", temp->x);
 		temp->y = get_coordinate(data->rooms[i], 'y');
+printf("x %d\n", temp->y);
 		temp->visited = 0;
 		temp->room_links = NULL;
-		(*maze)->room_links[j++] = temp;
+		(maze)->room_links[j++] = temp;
 		k++;
-		maze = &temp;
+		maze = temp;
 	}
-	return (*maze);
+	return (maze);
 }
 
 t_room	*connect_links(t_log *data)
@@ -127,11 +140,20 @@ t_room	*connect_links(t_log *data)
 printf("%d: room_name = %s\n", i, room_name);
 		cur_links = find_linked_rooms(room_name, data->links);
 		if (i == data->start_index)
+		{
+printf("1:\n");
 			maze = new_maze(data->rooms[i], 0, data, cur_links);
+		}
 		else if (i == data->end_index)
+		{	
+printf("2:\n");
 			maze = new_maze(data->rooms[i], 1, data, cur_links);
+		}
 		else
+		{
+printf("3:\n");
 			maze = new_maze(data->rooms[i], 2, data, cur_links);
+		}
 		i++;
 	}
 	return (maze);

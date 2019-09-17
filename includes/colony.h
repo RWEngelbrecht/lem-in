@@ -22,7 +22,7 @@ typedef char *t_str;
 
 typedef struct		s_room
 {
-	unsigned int	room_type : 2;
+	unsigned int	room_type;
 	t_str			name;
 	unsigned int	x : 8;
 	unsigned int	y : 8;
