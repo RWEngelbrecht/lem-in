@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/16 12:29:44 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/17 07:16:48 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int		check_name(t_log *data/*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
 void	validate(t_log *data);
-void	connect_links(t_log *data);
+t_room	*connect_links(t_log *data);
 
 #endif
