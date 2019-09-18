@@ -24,34 +24,25 @@ char	*get_room_name(char *room)
 	return (retRoomName);
 }
 
-int     check_name(t_log *data) //Check if rooms start with 'L' or '#'
+int     check_name(t_log *data)
 {
-    // iterators
     int i;
     int j;
 
     i = 0;
 
-    /*if (phase != 1)
-        return (0);*/
     while (data->rooms[i])
     {
         j = i + 1;
         while (data->rooms[j])
         {
             if (ft_strequ(data->rooms[i], data->rooms[j]))
-            {
-                return (0); // found duplicate.
-            }
+                return (0);
             j++;
         }
         i++;
     }
-    return (1); // no duplicates found.
-    // need to check for duplicate names
-    // need to check for duplicate x and y cords
-    // need to check for valid phases
-
+    return (1);
 }
 
 int     check_name_XY(t_log *data)
@@ -82,7 +73,6 @@ int     check_name_XY(t_log *data)
     return (1);
 }
 
-//Checks if all links use valid room names, exits with Error if not.
 int		check_links(t_log *data)
 {
 	int i;

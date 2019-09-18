@@ -45,13 +45,32 @@ typedef struct		s_log
 	t_str			*links;
 }					t_log;
 
-
-char	*get_room_name(char *room);
+/*
+**	read_input functions 
+*/
+int		is_command(char *line);
+int		is_comment(char *line);
+int		is_room(char *line);
+int		is_link(char *line);
 t_log	*read_input(char *line);
+
+/*
+**	validation functions 
+*/
+char	*get_room_name(char *room);
 int		check_name(t_log *data/*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
+t_log	*read_input(char *line);
 void	validate(t_log *data);
+
+/*
+**	pathfinder functions 
+*/
+char	**find_linked_rooms(t_str name, t_str *all_links);
+int		get_coordinate(t_str room, char type);
+t_room	*new_maze(t_str room, unsigned int type);
+void	add_room(t_room **maze, t_str room, unsigned int type);
 t_room	*connect_links(t_log *data);
 
 #endif

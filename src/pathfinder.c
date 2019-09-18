@@ -189,9 +189,21 @@ t_room	*connect_links(t_log *data)
 		}
 		i++;
 	}
-// while (maze){
-// 	printf("maze->room_type = %d\nmaze->name = %s\nmaze->x: %d, maze->y: %d\nmaze->visited = %d\n", maze->room_type, maze->name, maze->x, maze->y, maze->visited);
-// 	maze = maze->next;
-// }
 	return (maze);
 }
+	1 -- 2 --- 6
+  /    			\
+0 --- 3 -|		 ---end
+  \				/
+   4 ---- 5 ---
+
+
+Node 0 contains 1, 3, 4 sub-nodes
+1 contains 2 
+3 contains nothing
+4 contains 5
+6 contains end
+5 contains end
+
+Not sure how you want to implement it? But was thinking of creating another linked list and have sub-nodes which then 
+contains 2 which then can contain 6 and so on.
