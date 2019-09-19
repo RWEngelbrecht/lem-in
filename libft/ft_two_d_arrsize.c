@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:13:04 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/19 15:35:03 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:48:43 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		ft_two_d_arrsize(char **arr)
 {
 	int	i;
 
+	i = 0;
 	while (arr[i])
 		i++;
 	return (i);
