@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 22:40:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/19 15:34:49 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:53:10 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_int_overflows(const char *str);
 int					ft_only_digits(char *str);
 int					ft_two_d_arrsize(char **arr);
+void				ft_free_two_d_arr(void **arr);
 
 #endif
