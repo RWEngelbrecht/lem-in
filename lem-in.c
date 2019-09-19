@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/17 07:16:34 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 12:23:35 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ printf("validating input\n");
 	validate(ret);
 printf("input validated\n");
 printf("mapping input\n");
-	maze = connect_links(ret);
+	maze = init_rooms(ret);
 printf("input mapped\n");
 	//valid = check_name_XY(ret);
 //printf("VALID CHECK: %d\n", check_links(ret));
