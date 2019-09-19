@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/19 12:00:16 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 12:19:55 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ char	**find_linked_rooms(t_str name, t_str *all_links);
 int		get_coordinate(t_str room, char type);
 t_room	*new_maze(t_str room, unsigned int type);
 void	add_room(t_room **maze, t_str room, unsigned int type);
-t_room	*connect_links(t_log *data);
+t_room	*init_rooms(t_log *data);
 
 #endif
