@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colony.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/17 13:48:32 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 12:00:16 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 #include "../libft/libft.h"
 
 typedef char *t_str;
-
-// typedef struct		s_links
-// {
-
-// }
 
 typedef struct		s_room
 {
