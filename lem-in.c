@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/19 12:23:35 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 14:46:32 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 
 	line = NULL;
 printf("reading input\n");
-	ret = read_input(line);
+	ret = read_input(line);				//*****DOES NOT LEAK****
 printf("input read\n");
 printf("validating input\n");
 // while (ret->rooms[i])
@@ -36,10 +36,10 @@ printf("validating input\n");
 // 	printf("links[%d] = %s\n", j, ret->links[j]);
 // 	j++;
 // }
-	validate(ret);
+	validate(ret);						//******LEAKS A F##K TON****
 printf("input validated\n");
 printf("mapping input\n");
-	maze = init_rooms(ret);
+	maze = init_rooms(ret);				//*****SOMEWHAT LEAKY******
 printf("input mapped\n");
 	//valid = check_name_XY(ret);
 //printf("VALID CHECK: %d\n", check_links(ret));
