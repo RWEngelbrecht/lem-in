@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pathfinder.c                                       :+:      :+:    :+:   */
+/*   mapulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/17 14:47:05 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 12:01:37 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,10 @@ t_room	*connect_links(t_log *data)
 	int i;
 	char **cur_links;
 	char *room_name;
-	char *start_room;
-	char *end_room;
 
 	maze = NULL;
 	i = 0;
 	cur_links = (char**)malloc(sizeof(sizeof(char*)));
-	start_room = data->rooms[data->start_index];
-	end_room = data->rooms[data->end_index];
 	room_name = get_room_name(data->rooms[i]);
 	cur_links = find_linked_rooms(room_name, data->links);
 	while (data->rooms[i])
