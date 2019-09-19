@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/19 12:19:55 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:06:20 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct		s_room
 
 typedef struct		s_log
 {
-	int				ant_amnt;
-	int				start_index;
-	int				end_index;
+	int				ant_amnt;		//make unsigned ints
+	int				start_index;	//make unsigned ints
+	int				end_index;		//make unsigned ints
 	t_str			*rooms;
 	t_str			*links;
 }					t_log;
