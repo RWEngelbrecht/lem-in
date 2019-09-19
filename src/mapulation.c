@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/19 12:19:54 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:01:36 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ char	**find_linked_rooms(t_str name, t_str *all_links)
 	name_len = ft_strlen(name);
 	i = 0;
 	j = 0;
-	connected = (char**)malloc(sizeof(char*));
+	connected = (char**)malloc(sizeof(char*) * ft_two_d_arrsize(all_links));
 	while (all_links[i])
 	{
 		if (ft_strnstr(all_links[i], name, ft_strlen(all_links[i])))
 		{
-			connected[j] = all_links[i];
+			connected[j] = ft_strdup(all_links[i]);
 			j++;
 		}
 		i++;
@@ -56,6 +56,20 @@ int		get_coordinate(t_str room, char type)
 	return (x_y);
 }
 
+void	add_room(t_room **maze, t_str room, unsigned int type)
+{
+	t_room *new_room;
+
+	new_room = malloc(sizeof(t_room));
+	new_room->room_type = type;
+	new_room->name = get_room_name(room);
+	new_room->x = get_coordinate(room, 'x');
+	new_room->y = get_coordinate(room, 'y');
+	new_room->visited = 0;
+	new_room->next = *maze;
+	*maze = new_room;
+}
+
 t_room	*new_maze(t_str room, unsigned int type)
 {
 	t_room	*maze;
@@ -70,18 +84,15 @@ t_room	*new_maze(t_str room, unsigned int type)
 	return (maze);
 }
 
-void	add_room(t_room **maze, t_str room, unsigned int type)
+void	link_rooms(t_room *maze, t_str *links)
 {
-	t_room *new_room;
+	t_str *arr_links;
 
-	new_room = malloc(sizeof(t_room));
-	new_room->room_type = type;
-	new_room->name = get_room_name(room);
-	new_room->x = get_coordinate(room, 'x');
-	new_room->y = get_coordinate(room, 'y');
-	new_room->visited = 0;
-	new_room->next = *maze;
-	*maze = new_room;
+	arr_links = NULL;
+	while (maze)
+	{
+		arr_links =
+	}
 }
 
 t_room	*init_rooms(t_log *data)
