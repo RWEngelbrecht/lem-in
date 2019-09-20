@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/16 13:39:02 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/20 09:53:28 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_log		*read_input(char *line)
 		else if (is_room(line))
 		{
 			if (phase != 1)
-				ORDER_ERROR;
+				ORDER_ERR;
 			data->rooms[++j] = ft_strdup(line);
 			if (start == 1)
 			{
@@ -116,7 +116,7 @@ t_log		*read_input(char *line)
 			if (phase == 1)
 				phase = 2;
 			if (phase == 0 || start < 0 || end < 0)
-				ORDER_ERROR;
+				ORDER_ERR;
 			data->links[++k] = ft_strdup(line);
 		}
 		else if (is_comment(line))
