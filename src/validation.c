@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:33:09 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/17 07:14:50 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/20 09:53:43 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,9 @@ int		check_links(t_log *data)
 void		validate(t_log *data)
 {
 	if (!(check_links(data)))
-		LINKS_ERROR;
+		LINK_ERR;
 	if (!(check_name(data)))
-		NAME_ERROR;
+		NAME_ERR;
 	if (!(check_name_XY(data)))
-		XY_ERROR;
+		XY_ERR;
 }
