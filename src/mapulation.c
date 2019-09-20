@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/19 16:01:36 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/20 10:16:17 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 //finds every link in all_links that references name, returns it in 2d array
-char	**find_linked_rooms(t_str name, t_str *all_links)
+char	**get_linked_rooms(t_str name, t_str *all_links)
 {
 	unsigned int	name_len;
 	unsigned int	i;
@@ -84,14 +84,33 @@ t_room	*new_maze(t_str room, unsigned int type)
 	return (maze);
 }
 
+//Returns name of room linked to r_name from string link
+char *get_linked_name(t_str r_name, t_str link)
+{
+	t_str *arr_names;
+
+	arr_names = ft_strsplit(link, '-');
+	if (ft_strequ(r_name, arr_names[0]))
+		return (arr_names[1]);
+	if (ft_strequ(r_name, arr_names[1]))
+		return (arr_names[0]);
+	return (NULL);
+}
+
 void	link_rooms(t_room *maze, t_str *links)
 {
-	t_str *arr_links;
+	t_room	temp;
+	t_str	*cur_lnks;
+	int		i;
 
-	arr_links = NULL;
+	i = 0;
+	cur_lnks = NULL;
 	while (maze)
 	{
-		arr_links =
+		cur_lnks = get_linked_rooms(maze->name, links);
+		maze->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks));
+		temp = *maze;
+		while (!ft_strequ(temp.name, )
 	}
 }
 
@@ -106,7 +125,7 @@ t_room	*init_rooms(t_log *data)
 	i = 0;
 	cur_links = (char**)malloc(sizeof(sizeof(char*)));
 	room_name = get_room_name(data->rooms[i]);
-	cur_links = find_linked_rooms(room_name, data->links);
+	cur_links = get_linked_rooms(room_name, data->links);
 	while (data->rooms[i])
 	{
 		if (!maze)
