@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   colony.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/19 15:06:20 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/20 10:07:09 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define NAME_ERROR {ft_putstr_fd("Error: Room names incorrect\n", 2); exit(2);}
-# define LINKS_ERROR {ft_putstr_fd("Error: Room links incorrect\n", 2); exit(2);}
-# define XY_ERROR {ft_putstr_fd("Error: Room coordinates incorrect\n", 2); exit(2);}
-# define ORDER_ERROR {ft_putstr_fd("Error: Incorrect order in input\n", 2); exit(2);}
+# define NAME_ERR {ft_putstr_fd("Error: Room names wrong\n", 2); exit(2);}
+# define LINK_ERR {ft_putstr_fd("Error: Room links wrong\n", 2); exit(2);}
+# define XY_ERR {ft_putstr_fd("Error: Room coordinates wrong\n", 2); exit(2);}
+# define ORDER_ERR {ft_putstr_fd("Error: Input order wrong\n", 2); exit(2);}
 #include "../libft/libft.h"
 
 typedef char *t_str;
@@ -41,7 +41,7 @@ typedef struct		s_log
 }					t_log;
 
 /*
-**	read_input functions 
+**	read_input functions
 */
 int		is_command(char *line);
 int		is_comment(char *line);
@@ -50,7 +50,7 @@ int		is_link(char *line);
 t_log	*read_input(char *line);
 
 /*
-**	validation functions 
+**	validation functions
 */
 char	*get_room_name(char *room);
 int		check_name(t_log *data/*, int phase*/);
@@ -60,9 +60,9 @@ t_log	*read_input(char *line);
 void	validate(t_log *data);
 
 /*
-**	pathfinder functions 
+**	pathfinder functions
 */
-char	**find_linked_rooms(t_str name, t_str *all_links);
+char	**get_linked_rooms(t_str name, t_str *all_links);
 int		get_coordinate(t_str room, char type);
 t_room	*new_maze(t_str room, unsigned int type);
 void	add_room(t_room **maze, t_str room, unsigned int type);
