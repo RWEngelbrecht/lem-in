@@ -6,7 +6,7 @@
 /*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/20 10:16:17 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/20 11:13:57 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,37 @@ char *get_linked_name(t_str r_name, t_str link)
 	return (NULL);
 }
 
-void	link_rooms(t_room *maze, t_str *links)
+void	link_rooms(t_room **maze, t_str *links)
 {
-	t_room	temp;
+	t_room	*temp;
 	t_str	*cur_lnks;
+	t_str	cur_lnk_name;
 	int		i;
+	int		j;
 
 	i = 0;
 	cur_lnks = NULL;
 	while (maze)
 	{
-		cur_lnks = get_linked_rooms(maze->name, links);
-		maze->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks));
+		cur_lnks = get_linked_rooms((*maze)->name, links);
+		(*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks));
 		temp = *maze;
-		while (!ft_strequ(temp.name, )
+		while (temp)
+		{
+			j = 0;
+			while (cur_lnks[j])
+			{
+				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
+				if (ft_strequ(temp->name, cur_lnk_name))
+				{
+					(*maze)->room_links[i] = temp;
+					i++;
+				}
+				j++;
+			}
+			temp = temp->next;
+		}
+		*maze = (*maze)->next;
 	}
 }
 
