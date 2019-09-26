@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/26 06:50:55 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/26 06:54:36 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char *get_linked_name(t_str r_name, t_str link)
 	return (NULL);
 }
 
-//Currently linking rooms that are not supposed to be linked.
+//probably traverses linked list too far...
 void	link_rooms(t_room **maze, t_str *links)
 {
 	t_room	*temp;
@@ -134,7 +134,7 @@ printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze
 			}
 			temp = temp->next;
 		}
-printf("maze->room_links[0]->name = %s\n", (*maze)->room_links[0]->name);
+//printf("maze->room_links[0]->name = %s\n", (*maze)->room_links[0]->name);
 		*maze = (*maze)->next;
 	}
 }
