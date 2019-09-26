@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/20 11:13:57 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/26 06:50:55 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char *get_linked_name(t_str r_name, t_str link)
 	return (NULL);
 }
 
+//Currently linking rooms that are not supposed to be linked.
 void	link_rooms(t_room **maze, t_str *links)
 {
 	t_room	*temp;
@@ -110,6 +111,7 @@ void	link_rooms(t_room **maze, t_str *links)
 	while ((*maze))
 	{
 printf("%d: loop started\n", i);
+printf("(*maze)->name = %s\n", (*maze)->name);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
 		(*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks));
 		temp = *maze;
@@ -117,20 +119,22 @@ printf("temp->name = %s\n", temp->name);
 		while (temp)
 		{
 			j = 0;
+			i = 0;
 			while (cur_lnks[j])
 			{
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
+printf("found temp->name in cur_link\n");
 				if (ft_strequ(temp->name, cur_lnk_name))
 				{
 					(*maze)->room_links[i] = temp;
+printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze)->room_links[i]->name, (*maze)->room_links[i]->x, (*maze)->room_links[i]->y, (*maze)->room_links[i]->room_type);
 					i++;
-printf("found temp->name in cur_link\n");
 				}
 				j++;
 			}
 			temp = temp->next;
 		}
-//printf("maze->room_links[0]->name = %s\n", (*maze)->room_links[0]->name);
+printf("maze->room_links[0]->name = %s\n", (*maze)->room_links[0]->name);
 		*maze = (*maze)->next;
 	}
 }
