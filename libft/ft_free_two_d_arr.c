@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_two_d_arr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:42:43 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/19 15:50:23 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/22 17:58:01 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_free_two_d_arr(void **arr)
 {
