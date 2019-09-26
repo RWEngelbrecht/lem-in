@@ -107,11 +107,13 @@ void	link_rooms(t_room **maze, t_str *links)
 
 	i = 0;
 	cur_lnks = NULL;
-	while (maze)
+	while ((*maze))
 	{
+printf("%d: loop started\n", i);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
 		(*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks));
 		temp = *maze;
+printf("temp->name = %s\n", temp->name);
 		while (temp)
 		{
 			j = 0;
@@ -122,11 +124,13 @@ void	link_rooms(t_room **maze, t_str *links)
 				{
 					(*maze)->room_links[i] = temp;
 					i++;
+printf("found temp->name in cur_link\n");
 				}
 				j++;
 			}
 			temp = temp->next;
 		}
+//printf("maze->room_links[0]->name = %s\n", (*maze)->room_links[0]->name);
 		*maze = (*maze)->next;
 	}
 }
@@ -165,5 +169,7 @@ t_room	*init_rooms(t_log *data)
 		}
 		i++;
 	}
+printf("initial mapping done, entering link_rooms\n");
+	link_rooms(&maze, data->links);
 	return (maze);
 }
