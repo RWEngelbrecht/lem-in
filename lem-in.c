@@ -17,6 +17,7 @@ int main()
 	char *line;
 	t_log *ret;
 	t_room *maze;
+
 //	int i = 0;
 //	 int j = 0;
 //	int valid;

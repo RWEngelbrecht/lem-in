@@ -130,12 +130,3 @@ t_log		*read_input(char *line)
 	ft_putchar('\n');
 	return (data);
 }
-
-// t_room	*room_populate(char **line)
-// {
-// 	t_room	*room;
-
-// 	if (!(t_room*)malloc(sizeof(t_room)))
-// 		return (NULL);
-
-// }

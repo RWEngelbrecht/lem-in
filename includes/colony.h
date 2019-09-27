@@ -42,7 +42,7 @@ typedef struct		s_log
 
 /*
 **	read_input functions
-*/
+/
 int		is_command(char *line);
 int		is_comment(char *line);
 int		is_room(char *line);
