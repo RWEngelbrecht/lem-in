@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/26 06:54:36 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/27 06:52:30 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	**get_linked_rooms(t_str name, t_str *all_links)
 	return (connected);
 }
 
-// void	add_room_links(t_room *maze)
 int		get_coordinate(t_str room, char type)
 {
 	int		i;
@@ -97,7 +96,6 @@ char *get_linked_name(t_str r_name, t_str link)
 	return (NULL);
 }
 
-//probably traverses linked list too far...
 void	link_rooms(t_room **maze, t_str *links)
 {
 	t_room	*temp;
@@ -123,7 +121,6 @@ printf("temp->name = %s\n", temp->name);
 			while (cur_lnks[j])
 			{
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
-printf("found temp->name in cur_link\n");
 				if (ft_strequ(temp->name, cur_lnk_name))
 				{
 					(*maze)->room_links[i] = temp;
@@ -134,7 +131,6 @@ printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze
 			}
 			temp = temp->next;
 		}
-//printf("maze->room_links[0]->name = %s\n", (*maze)->room_links[0]->name);
 		*maze = (*maze)->next;
 	}
 }
@@ -175,5 +171,11 @@ t_room	*init_rooms(t_log *data)
 	}
 printf("initial mapping done, entering link_rooms\n");
 	link_rooms(&maze, data->links);
+i = 0;
+// while (maze->room_links[i]){
+	////****why does this sgflt????****////
+ printf("maze->room_links[%i]->name = %s\n", i, (maze)->room_links[i]->name);
+// i++;
+// }
 	return (maze);
 }
