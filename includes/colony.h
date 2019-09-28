@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colony.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/20 10:07:09 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/28 07:04:38 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_log
 
 /*
 **	read_input functions
-/
+*/
 int		is_command(char *line);
 int		is_comment(char *line);
 int		is_room(char *line);
