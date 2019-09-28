@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/27 06:52:30 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/28 12:05:07 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ printf("temp->name = %s\n", temp->name);
 			j = 0;
 			i = 0;
 			while (cur_lnks[j])
-			(*maze)->room_links[i] = temp;
 			{
+				(*maze)->room_links[i] = temp;
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
 				if (ft_strequ(temp->name, cur_lnk_name))
 				{
@@ -175,10 +175,10 @@ t_room	*init_rooms(t_log *data)
 printf("initial mapping done, entering link_rooms\n");
 	link_rooms(&maze, data->links);
 	i = 0;
-	while (maze->room_links[i]){
+//	while (maze->room_links[i]){
 	////****why does this sgflt????****////
-printf("maze->room_links[%i]->name = %s\n", i, (maze)->room_links[i]->name);
-	i++;
-	}
+// printf("maze->room_links[%i]->name = %s\n", i, (maze)->room_links[i]->name);
+// 	i++;
+// 	}
 	return (maze);
 }
