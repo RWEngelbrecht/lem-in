@@ -54,5 +54,5 @@ printf("input initialized\n");
 	//valid = check_name_XY(ret);
 //printf("VALID CHECK: %d\n", check_links(ret));
 //	printf("ant amnt = %d\nstart_line = %d\nend_line = %d\n", ret->ant_amnt, ret->start_line, ret->end_line);
-
+while(1);
 }

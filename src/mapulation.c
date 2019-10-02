@@ -90,9 +90,9 @@ char *get_linked_name(t_str r_name, t_str link)
 
 	arr_names = ft_strsplit(link, '-');
 	if (ft_strequ(r_name, arr_names[0]))
-		return (arr_names[1]);
-	if (ft_strequ(r_name, arr_names[1]))
 		return (arr_names[0]);
+	if (ft_strequ(r_name, arr_names[1]))
+		return (arr_names[1]);
 	return (NULL);
 }
 
@@ -111,15 +111,19 @@ void	link_rooms(t_room **maze, t_str *links)
 printf("%d: loop started\n", i);
 printf("(*maze)->name = %s\n", (*maze)->name);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
-		(*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks));
+printf("GLR++\n\n");
+		if (!((*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks))))
+			return ;
 		temp = *maze;
 printf("temp->name = %s\n", temp->name);
 		while (temp)
 		{
 			j = 0;
 			i = 0;
+			printf("I: %d\n", i);
 			while (cur_lnks[j])
 			{
+				printf("J: %d\n", j);
 				(*maze)->room_links[i] = temp;
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
 				if (ft_strequ(temp->name, cur_lnk_name))
@@ -149,9 +153,7 @@ t_room	*init_rooms(t_log *data)
 	while (data->rooms[i])
 	{
 		room_name = get_room_name(data->rooms[i]);
-		printf("data->rooms[i]:\n roomname: %s\n", room_name);
 		cur_links = get_linked_rooms(room_name, data->links);
-		printf("cur_links[i]%s\n", cur_links[i]);
 		if (!maze)
 		{
 			if (i == data->start_index)
