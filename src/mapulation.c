@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/28 12:05:07 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/10/03 11:19:09 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ char *get_linked_name(t_str r_name, t_str link)
 
 	arr_names = ft_strsplit(link, '-');
 	if (ft_strequ(r_name, arr_names[0]))
-		return (arr_names[0]);
-	if (ft_strequ(r_name, arr_names[1]))
 		return (arr_names[1]);
+	if (ft_strequ(r_name, arr_names[1]))
+		return (arr_names[0]);
 	return (NULL);
 }
 
