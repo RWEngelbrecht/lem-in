@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/10/03 11:19:09 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/10/03 11:21:02 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	link_rooms(t_room **maze, t_str *links)
 printf("%d: loop started\n", i);
 printf("(*maze)->name = %s\n", (*maze)->name);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
-printf("GLR++\n\n");
 		if (!((*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks))))
 			return ;
 		temp = *maze;
@@ -120,10 +119,8 @@ printf("temp->name = %s\n", temp->name);
 		{
 			j = 0;
 			i = 0;
-			printf("I: %d\n", i);
 			while (cur_lnks[j])
 			{
-				printf("J: %d\n", j);
 				(*maze)->room_links[i] = temp;
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
 				if (ft_strequ(temp->name, cur_lnk_name))
