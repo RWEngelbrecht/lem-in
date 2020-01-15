@@ -30,6 +30,7 @@ char	**get_linked_rooms(t_str name, t_str *all_links)
 		if (ft_strnstr(all_links[i], name, ft_strlen(all_links[i])))
 		{
 			connected[j] = ft_strdup(all_links[i]);
+			// printf("linked room : %s\n",connected[j]);
 			j++;
 		}
 		i++;
@@ -98,6 +99,7 @@ char *get_linked_name(t_str r_name, t_str link)
 
 void	link_rooms(t_room **maze, t_str *links)
 {
+	t_room	*maze_head;
 	t_room	*temp;
 	t_str	*cur_lnks;
 	t_str	cur_lnk_name;
@@ -106,25 +108,29 @@ void	link_rooms(t_room **maze, t_str *links)
 
 	i = 0;
 	cur_lnks = NULL;
+	maze_head = *maze;
 	while ((*maze))
 	{
 printf("%d: loop started\n", i);
 printf("(*maze)->name = %s\n", (*maze)->name);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
+for (int k = 0; cur_lnks[k]; k++)
+	printf("%s\n", cur_lnks[k]);
 		if (!((*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks))))
 			return ;
-		temp = *maze;
-printf("temp->name = %s\n", temp->name);
+		temp = maze_head;
+// printf("temp->name = %s\n", temp->name);
 		while (temp)
 		{
 			j = 0;
-			i = 0;
+			// i = 0;
 			while (cur_lnks[j])
 			{
-				(*maze)->room_links[i] = temp;
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
+printf("curr_lnk_name == %s  temp->name == %s\n", cur_lnk_name, temp->name);
 				if (ft_strequ(temp->name, cur_lnk_name))
 				{
+					(*maze)->room_links[i] = temp;
 printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze)->room_links[i]->name, (*maze)->room_links[i]->x, (*maze)->room_links[i]->y, (*maze)->room_links[i]->room_type);
 					i++;
 				}
@@ -133,6 +139,7 @@ printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze
 			temp = temp->next;
 		}
 		*maze = (*maze)->next;
+		i = 0;
 	}
 }
 
@@ -174,10 +181,10 @@ t_room	*init_rooms(t_log *data)
 printf("initial mapping done, entering link_rooms\n");
 	link_rooms(&maze, data->links);
 	i = 0;
-//	while (maze->room_links[i]){
-	////****why does this sgflt????****////
+	// while (maze->room_links[i]){
+	//****why does this sgflt????****////
 // printf("maze->room_links[%i]->name = %s\n", i, (maze)->room_links[i]->name);
-// 	i++;
-// 	}
+	// i++;
+	// }
 	return (maze);
 }
