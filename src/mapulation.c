@@ -111,11 +111,12 @@ void	link_rooms(t_room **maze, t_str *links)
 	maze_head = *maze;
 	while ((*maze))
 	{
-printf("%d: loop started\n", i);
-printf("(*maze)->name = %s\n", (*maze)->name);
+// printf("%d: loop started\n", i);
+// printf("(*maze)->name = %s\n", (*maze)->name);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
-for (int k = 0; cur_lnks[k]; k++)
-	printf("%s\n", cur_lnks[k]);
+// for (int k = 0; cur_lnks[k]; k++)
+// 	printf("%s\n", cur_lnks[k]);
+printf("Size of possible links == %d\n", ft_two_d_arrsize(cur_lnks));
 		if (!((*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks))))
 			return ;
 		temp = maze_head;
@@ -127,20 +128,26 @@ for (int k = 0; cur_lnks[k]; k++)
 			while (cur_lnks[j])
 			{
 				cur_lnk_name = get_linked_name((*maze)->name, cur_lnks[j]);
-printf("curr_lnk_name == %s  temp->name == %s\n", cur_lnk_name, temp->name);
+// printf("curr_lnk_name == %s  temp->name == %s\n", cur_lnk_name, temp->name);
 				if (ft_strequ(temp->name, cur_lnk_name))
 				{
 					(*maze)->room_links[i] = temp;
-printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze)->room_links[i]->name, (*maze)->room_links[i]->x, (*maze)->room_links[i]->y, (*maze)->room_links[i]->room_type);
+// printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze)->room_links[i]->name, (*maze)->room_links[i]->x, (*maze)->room_links[i]->y, (*maze)->room_links[i]->room_type);
 					i++;
+					printf("room[%s] linked to room[%s]\n", (*maze)->name, temp->name);
 				}
 				j++;
 			}
 			temp = temp->next;
 		}
+		while ((*maze)->room_links[i]) {
+			// free((*maze)->room_links[i]);
+			i++;
+		}
 		*maze = (*maze)->next;
 		i = 0;
 	}
+	*maze = maze_head;
 }
 
 t_room	*init_rooms(t_log *data)
@@ -166,6 +173,7 @@ t_room	*init_rooms(t_log *data)
 				maze = new_maze(data->rooms[i], 1);
 			else
 				maze = new_maze(data->rooms[i], 2);
+			// printf("new maze: %s\n", maze->name);
 		}
 		else
 		{
@@ -175,16 +183,20 @@ t_room	*init_rooms(t_log *data)
 				add_room(&maze, data->rooms[i], 1);
 			else
 				add_room(&maze, data->rooms[i], 2);
+			// printf("room added: %s\n", maze->name);
 		}
 		i++;
 	}
 printf("initial mapping done, entering link_rooms\n");
 	link_rooms(&maze, data->links);
-	i = 0;
-	// while (maze->room_links[i]){
-	//****why does this sgflt????****////
-// printf("maze->room_links[%i]->name = %s\n", i, (maze)->room_links[i]->name);
-	// i++;
-	// }
+// while (maze) {
+// 	i = 0;
+// 	while (maze->room_links[i]){
+// 	//****why does this sgflt????****//// BECAUSE YOU DIDN'T RESET TO THE HEAD
+// 		printf("maze->room_links[%i]->name = %s\n", i, (maze)->room_links[i]->name);
+// 		i++;
+// 	}
+// 	maze = maze->next;
+// }
 	return (maze);
 }
