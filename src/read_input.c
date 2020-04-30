@@ -125,8 +125,8 @@ t_log		*read_input(char *line)
 		}
 		free(line);
 	}
-	data->rooms[++j] = 0;
-	data->links[++k] = 0;
+	// data->rooms[++j] = 0;
+	// data->links[++k] = 0;
 	ft_putchar('\n');
 	return (data);
 }
