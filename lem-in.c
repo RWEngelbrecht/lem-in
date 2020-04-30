@@ -32,29 +32,6 @@ printf("input validated\n");
 printf("mapping input\n");
 	maze = init_rooms(ret);				//*****SOMEWHAT LEAKY******
 printf("input initialized\n");
-// while (maze)
-// {
-// 	printf("starting through maze room %s\n",maze->name);
-// 	i=0;
-// 	while (maze->room_links[i])
-// 	{
-// 		printf("room(%d): type = %d\nname = %s\nXY = %d %d\nvisited = %d\n",i, maze->room_links[i]->room_type, maze->room_links[i]->name, maze->room_links[i]->x, maze->room_links[i]->y, maze->room_links[i]->visited);
-// 		i++;
-// 	}
-// 	maze = maze->next;
-// }
-// while (ret->rooms[i])
-// {
-// 	printf("rooms[%d] = %s\n", i, ret->rooms[i]);
-// 	i++;
-// }
-// while (ret->links[j])
-// {
-// 	printf("links[%d] = %s\n", j, ret->links[j]);
-// 	j++;
-// }
-	//valid = check_name_XY(ret);
-//printf("VALID CHECK: %d\n", check_links(ret));
-//	printf("ant amnt = %d\nstart_line = %d\nend_line = %d\n", ret->ant_amnt, ret->start_line, ret->end_line);
-// while(1);
+	// TODO: Perform algorithm
+	// TODO: Print everything
 }
