@@ -30,7 +30,6 @@ char	**get_linked_rooms(t_str name, t_str *all_links)
 		if (ft_strnstr(all_links[i], name, ft_strlen(all_links[i])))
 		{
 			connected[j] = ft_strdup(all_links[i]);
-			// printf("linked room : %s\n",connected[j]);
 			j++;
 		}
 		i++;
@@ -40,13 +39,9 @@ char	**get_linked_rooms(t_str name, t_str *all_links)
 
 int		get_coordinate(t_str room, char type)
 {
-//	int		i; **UNUSED**
-//	int		j; **UNUSED**
 	int		x_y;
 	char	**coordinates;
 
-//	i = 0; **UNUSED**
-//	j = 0;	**UNUSED**
 	x_y = 0;
 	coordinates = ft_strsplit(room, ' ');
 	if (type == 'x')
@@ -111,13 +106,9 @@ void	link_rooms(t_room **maze, t_str *links)
 	maze_head = *maze;
 	while ((*maze))
 	{
-// printf("%d: loop started\n", i);
-// printf("(*maze)->name = %s\n", (*maze)->name);
 		cur_lnks = get_linked_rooms((*maze)->name, links);
-// for (int k = 0; cur_lnks[k]; k++)
-// 	printf("%s\n", cur_lnks[k]);
 printf("Amount of possible links == %d\n", ft_two_d_arrsize(cur_lnks));
-		if (!((*maze)->room_links = malloc(sizeof(t_room*) * 2)))
+		if (!((*maze)->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks))))
 			return ;
 		temp = maze_head;
 // printf("temp->name = %s\n", temp->name);
@@ -131,12 +122,18 @@ printf("Amount of possible links == %d\n", ft_two_d_arrsize(cur_lnks));
 printf("curr_lnk_name == %s  temp->name == %s\n", get_linked_name((*maze)->name, cur_lnks[j]), temp->name);
 				if (ft_strequ(temp->name, get_linked_name((*maze)->name, cur_lnks[j])))
 				{
-					printf("about to link maze room %s to temp room %s\n", (*maze)->name, temp->name);
+printf("about to link maze room %s to temp room %s\n", (*maze)->name, temp->name);
+					if (!(temp->room_links = malloc(sizeof(t_room*) * ft_two_d_arrsize(cur_lnks))))
+						return ;
+					temp->room_links[i] = *maze;
+for (int p = 0; temp->room_links[p]; p++) {
+	printf("\ntemp->room_lnk[%i] = %s\n\n", p, temp->room_links[p]->name);
+}
 					(*maze)->room_links[i] = temp;
-					printf("room linked names = %s\n", (*maze)->room_links[i]->name);
+printf("room linked names = %s\n", (*maze)->room_links[i]->name);
 // printf("(*maze)->room_links[%i]->name + coords = %s %d %d->type %d\n", i, (*maze)->room_links[i]->name, (*maze)->room_links[i]->x, (*maze)->room_links[i]->y, (*maze)->room_links[i]->room_type);
 					i++;
-					printf("room[%s] linked to room[%s]\n", (*maze)->name, temp->name);
+printf("room[%s] linked to room[%s]\n", (*maze)->name, temp->name);
 				}
 				j++;
 				// cur_lnks++;
@@ -145,8 +142,8 @@ printf("curr_lnk_name == %s  temp->name == %s\n", get_linked_name((*maze)->name,
 		}
 		// i = 0;
 		// while ((*maze)->room_links[i]) {
-		// 	// free((*maze)->room_links[i]);
-		// 	printf("room linked names = %s\n", (*maze)->room_links[i]->name);
+			// free((*maze)->room_links[i]);
+			// printf("(%s)->room_links[%i]=%s->room_links[0]=%s\n", (*maze)->name,i,(*maze)->room_links[i]->name,(*maze)->room_links[i]->room_links[i]->name);
 		// 	i++;
 		// }
 		*maze = (*maze)->next;
@@ -195,6 +192,5 @@ t_room	*init_rooms(t_log *data)
 	}
 printf("initial mapping done, entering link_rooms\n");
 	link_rooms(&maze, data->links);
-for (int m = 0; maze->room_links[])
 	return (maze);
 }
