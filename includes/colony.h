@@ -71,6 +71,6 @@ t_room	*init_rooms(t_log *data);
 /*
 **	linked list functions
 */
-t_room *create_node(t_str line)
+t_room *create_node(t_str line);
 
 #endif
