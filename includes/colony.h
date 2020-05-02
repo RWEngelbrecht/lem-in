@@ -56,9 +56,8 @@ char	*get_room_name(char *room);
 int		check_name(t_log *data/*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
-t_log	*read_input(char *line);
 void	validate(t_log *data);
-int     validate_file(char *line);
+t_log   *validate_file(char *line); //new
 /*
 **	pathfinder functions
 */

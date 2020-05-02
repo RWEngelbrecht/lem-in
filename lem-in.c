@@ -15,15 +15,15 @@
 int main()
 {
 	char *line;
-//	t_log *ret;
+	t_log *ret;
 //	t_room *maze;
 
 	line = NULL;
 //printf("reading input\n");
 //	ret = read_input(line);				//*****DOES NOT LEAK****
 //printf("input read\n");
-   validate_file(line);
-   printf("validated");
+    ret = validate_file(line);
+   printf("validated, %d", ret->ant_amnt);
 //printf("validating input\n");
 //	validate(ret);						//******LEAKS A F##K TON****
 //printf("input validated\n");
