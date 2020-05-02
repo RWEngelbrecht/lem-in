@@ -23,9 +23,7 @@ int main()
 //printf("reading input\n");
 	raw_data = read_input(line);				//*****DOES NOT LEAK****
 //printf("input read\n");
-   if (validate_file(raw_data)) {
-        printf("validated");
-   }
+    validate_file(raw_data)
 //printf("validating input\n");
 //	validate(ret);						//******LEAKS A F##K TON****
 //printf("input validated\n");
