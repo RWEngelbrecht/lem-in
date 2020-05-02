@@ -9,9 +9,6 @@ int    validate_file(t_str *data) {
 	int j;
 	int k;
 
-//	data = (t_log*)malloc(sizeof(t_log));
-//	data->rooms = (char**)malloc(sizeof(char*) * 2048);
-//	data->links = (char**)malloc(sizeof(char*) * 2048);
 	start = -1;
 	end = -1;
 	phase = 0;
@@ -27,9 +24,6 @@ int    validate_file(t_str *data) {
 //       			data->ant_amnt = ft_atoi(line);
        			phase = 1;
        		}
-//       		else if(is_comment(data[i])) {
-//                ft_putstr(data[i]);
-//            }
 
             if (ft_strequ(data[i], "##start") && phase == 1) {
                 start = 1;
@@ -54,9 +48,6 @@ int    validate_file(t_str *data) {
             		ORDER_ERR;
 //            	data->links[++k] = ft_strdup(line);
             }
-//            else if (is_comment(data[i])) {
-//            	ft_putstr(data[i]);
-//            }
             ft_putendl(data[i]);
             i++;
         }
