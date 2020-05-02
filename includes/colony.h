@@ -58,7 +58,7 @@ int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
 t_log	*read_input(char *line);
 void	validate(t_log *data);
-
+int     validate_file(char *line);
 /*
 **	pathfinder functions
 */

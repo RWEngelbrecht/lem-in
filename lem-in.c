@@ -15,23 +15,21 @@
 int main()
 {
 	char *line;
-	t_log *ret;
-	t_room *maze;
-
-	// int i = 0;
-//	 int j = 0;
-//	int valid;
+//	t_log *ret;
+//	t_room *maze;
 
 	line = NULL;
-printf("reading input\n");
-	ret = read_input(line);				//*****DOES NOT LEAK****
-printf("input read\n");
-printf("validating input\n");
-	validate(ret);						//******LEAKS A F##K TON****
-printf("input validated\n");
-printf("mapping input\n");
-	maze = init_rooms(ret);				//*****SOMEWHAT LEAKY******
-printf("input initialized\n");
+//printf("reading input\n");
+//	ret = read_input(line);				//*****DOES NOT LEAK****
+//printf("input read\n");
+   validate_file(line);
+   printf("validated");
+//printf("validating input\n");
+//	validate(ret);						//******LEAKS A F##K TON****
+//printf("input validated\n");
+//printf("mapping input\n");
+//	maze = init_rooms(ret);				//*****SOMEWHAT LEAKY******
+//printf("input initialized\n");
 	// TODO: Perform algorithm
 	// TODO: Print everything
 }

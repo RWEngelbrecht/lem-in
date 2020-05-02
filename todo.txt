@@ -1,0 +1,5 @@
+1. Make validate structure file that includes -/ main header colony.h libft.h
+2. Read each line to know if it's a comment/#start etc. Start command needs rooms next line.
+3.
+4.
+5.

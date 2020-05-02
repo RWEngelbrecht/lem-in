@@ -29,18 +29,11 @@ int		is_command(char *line)
 	return (0);
 }
 
-int		is_comment(char *line)
+int        is_comment(char *line)
 {
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '#' && line[i + 1] != '#')
-			return (1);
-		i++;
-	}
-	return (0);
+    if (line[0] == '#' && line[1] != '#')
+        return (1);
+    return (0);
 }
 
 // Checking whether input is a room. By checking if wordcount is three.
