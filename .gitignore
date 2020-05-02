@@ -50,6 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
+.idea
 # Annoying hidden files
 .DS_Store
