@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/01 11:42:32 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/01 13:58:13 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int		is_command(char *line)
 
 int		is_comment(char *line)
 {
-	int i;
-
 	if (line[0] == '#' && line[1] != '#')
 		return (1);
 	return (0);
