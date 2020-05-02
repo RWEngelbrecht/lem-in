@@ -1,20 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_input.c                                       :+:      :+:    :+:   */
+/*   input_validation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/20 09:53:28 by rengelbr         ###   ########.fr       */
+/*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
+/*   Updated: 2020/05/01 13:58:13 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-**	This file contains functions that read from standard output the data needed
-**	to build the "ant farm". Depending on the input, these functions will call
-**	functions from other files to complete the game.
-*/
 
 #include "../libft/libft.h"
 #include "../includes/colony.h"
@@ -29,18 +23,23 @@ int		is_command(char *line)
 	return (0);
 }
 
-int        is_comment(char *line)
+int		is_comment(char *line)
 {
-    if (line[0] == '#' && line[1] != '#')
-        return (1);
-    return (0);
+	if (line[0] == '#' && line[1] != '#')
+		return (1);
+	return (0);
 }
 
 // Checking whether input is a room. By checking if wordcount is three.
 int		is_room(char *line)
 {
+	char** split_room;
 	if (ft_wordcount(line, ' ') == 3)
-		return (1);
+	{
+		split_room = ft_strsplit(line, ' ');
+		if (ft_only_digits(split_room[1]) && ft_only_digits(split_room[2]))
+			return (1);
+	}
 	return (0);
 }
 
