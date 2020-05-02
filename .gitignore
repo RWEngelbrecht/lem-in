@@ -54,3 +54,8 @@ dkms.conf
 
 # Annoying hidden files
 .DS_Store
+
+# Other
+Makefile
+lem-in
+*.txt
