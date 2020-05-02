@@ -57,7 +57,7 @@ int		check_name(t_log *data/*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
 void	validate(t_log *data);
-int     validate_file(char *line);
+int     validate_file(t_str *data); //new
 /*
 **	pathfinder functions
 */

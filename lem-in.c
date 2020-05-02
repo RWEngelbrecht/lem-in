@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/02 12:23:39 by rengelbr         ###   ########.fr       */
+/*   Updated: 2019/09/22 18:06:13 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int main()
 //printf("reading input\n");
 	raw_data = read_input(line);				//*****DOES NOT LEAK****
 //printf("input read\n");
-   validate_file(raw_data);
-   printf("validated");
+    validate_file(raw_data)
 //printf("validating input\n");
 //	validate(ret);						//******LEAKS A F##K TON****
 //printf("input validated\n");
