@@ -36,7 +36,7 @@ typedef struct		s_log
 	int				ant_amnt;		//make unsigned ints
 	int				start_index;	//make unsigned ints
 	int				end_index;		//make unsigned ints
-	t_str			*rooms;
+	t_room		**rooms;
 	t_str			*links;
 }					t_log;
 
@@ -52,7 +52,6 @@ t_str	*read_input(char *line);
 /*
 **	validation functions
 */
-char	*get_room_name(char *room);
 int		check_name(t_log *data/*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
@@ -71,5 +70,6 @@ t_room	*init_rooms(t_log *data);
 **	linked list functions
 */
 t_room *create_node(t_str line);
+t_log *create_node_array(t_str *raw_data);
 
 #endif
