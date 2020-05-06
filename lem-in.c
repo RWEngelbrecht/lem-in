@@ -16,7 +16,7 @@ int main()
 {
 	char *line;
 	t_str *raw_data;
-	t_log *node_array;
+	// t_log *node_array;
 
 	line = NULL;
 	printf("reading input\n");
@@ -24,9 +24,13 @@ int main()
 	printf("validating input\n");
 	validate_file(raw_data);
 	printf("storing input\n");
-	create_node_array(raw_data);
-	if (node_array)
-		return (1);
+	// node_array = create_node_array(raw_data);
+	// int i = 0;
+	// while (node_array->rooms[i])
+	// {
+	// 	printf("%s", node_array->rooms[i]->name);
+	// 	i++;
+	// }
 	// TODO: Perform algorithm
 	// TODO: Print everything
 }

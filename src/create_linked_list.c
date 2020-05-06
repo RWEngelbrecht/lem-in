@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/colony.h"
-#include "../libft/libft.h"
-#include <stdio.h>
 
 /*
 int main()
@@ -48,7 +46,9 @@ t_room *create_node(t_str line)
 	char **room_data;
 
 	room_data = ft_strsplit(line, ' ');
+	// check for leaks
 	node = (t_room *)malloc(sizeof(t_room));
+	//
 	node->name = (t_str)malloc(ft_strlen(room_data[0]) * sizeof(char));
 	node->name = room_data[0];
 	node->x = atoi(room_data[1]);
@@ -64,15 +64,17 @@ t_room *create_node(t_str line)
 
 t_log *create_node_array(t_str *raw_data)
 {
-	write(1, "AAA", 1);
 	int i;
 	int j;
 	t_log *node_array;
 
 	i = 0;
 	j = 0;
+	// check for leaks
 	node_array = (t_log *)malloc(sizeof(t_log));
-	write(1, "AAA", 1);
+	// check for leaks
+	node_array->rooms = (t_room **)malloc(sizeof(t_room *) * room_count(raw_data));
+	//
 	while (!(is_link(raw_data[i])))
 	{
 		if (ft_only_digits(raw_data[i]))
