@@ -56,11 +56,36 @@ t_room *create_node(t_str line)
 	return (node);
 }
 
-// t_log **create_links(t_log **node_array, t_str *raw_data, int i)
-// {
-// 	printf("%s", raw_data[i]);
-// 	return (node_array);
-// }
+t_log **create_links(t_log *node_array, t_str *raw_data, int i)
+{
+	int i;
+	int j;
+	int k;
+	int l;
+	char **rooms;
+
+	i = 0;
+	while (raw_data[i])
+	{
+		if (is_link(raw_data[i]))
+		{
+			j = 0;
+			k = 0;
+			rooms = ft_strsplit(raw_data[i],'-');
+			while (rooms[0] != node_array->rooms[j]->name)
+				j++;
+			while (rooms[1] != node_array->rooms[k]->name)
+				k++;
+			node_array->rooms[j]->room_links = (t_room *)malloc(sizeof(t_room) * node_array->room_count);
+			// l = 0;
+			// node_array->rooms[1]->room_links[0] = node_array->rooms[k];
+			// l++;
+		}
+		i++;
+	}
+	free(rooms);
+	return (node_array);
+}
 
 t_log *create_node_array(t_str *raw_data)
 {
@@ -96,7 +121,7 @@ t_log *create_node_array(t_str *raw_data)
 		}
 		i++;
 	}
-	// create_links(&node_array, raw_data, i);
+	create_links(&node_array, raw_data, i);
 	free(raw_data);
 	return (node_array);
 }

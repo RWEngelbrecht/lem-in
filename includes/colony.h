@@ -90,6 +90,7 @@ t_room *init_rooms(t_log *data);
 */
 t_room *create_node(t_str line);
 t_log *create_node_array(t_str *raw_data);
+t_log **create_links(t_log *node_array, t_str *raw_data, int i);
 
 /*
 **	helper functions

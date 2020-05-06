@@ -33,6 +33,7 @@ int		is_comment(char *line)
 // Checking whether input is a room. By checking if wordcount is three.
 int		is_room(char *line)
 {
+	// Need to check that room name doesn't start with a 'L'
 	char** split_room;
 	if (ft_wordcount(line, ' ') == 3)
 	{
