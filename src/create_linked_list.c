@@ -81,6 +81,14 @@ t_log **create_links(t_log *node_array, t_str *raw_data, int i)
 			// l = 0;
 			// node_array->rooms[1]->room_links[0] = node_array->rooms[k];
 			// l++;
+
+			//	if (link) {
+			//		create_struct(data);
+			//		link new struct with last created struct
+			//	} else if (!link) {
+			//		create_struct(data);
+			//		set link in struct to last createcd struct.
+			//	}
 		}
 		i++;
 	}
