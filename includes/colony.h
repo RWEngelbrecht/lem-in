@@ -49,6 +49,13 @@ typedef struct s_room
 	struct s_room **room_links;
 } t_room;
 
+typedef struct			s_links
+{
+	char				*name;
+	struct s_rooms		*room;
+	struct s_links		*next;
+}						t_links;
+
 typedef struct s_log
 {
 	int ant_amnt;		 //make unsigned ints

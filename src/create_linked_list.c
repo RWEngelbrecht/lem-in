@@ -63,6 +63,7 @@ t_log **create_links(t_log *node_array, t_str *raw_data, int i)
 	int k;
 	int l;
 	char **rooms;
+	t_room **room_duplicates;
 
 	i = 0;
 	while (raw_data[i])
@@ -71,7 +72,7 @@ t_log **create_links(t_log *node_array, t_str *raw_data, int i)
 		{
 			j = 0;
 			k = 0;
-			rooms = ft_strsplit(raw_data[i],'-');
+			rooms = ft_strsplit(raw_data[i], '-');
 			while (rooms[0] != node_array->rooms[j]->name)
 				j++;
 			while (rooms[1] != node_array->rooms[k]->name)
