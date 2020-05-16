@@ -28,7 +28,7 @@ int main()
 	// print_map(node_array);
 	printf("====================\nStarting Algorithm\n");
 	// algo(node_array);
-
+//	while(1);
 	printf("Algorithm Finished\n====================\n");
 	// free_map(node_array);
 	// TODO: Perform algorithm

@@ -44,26 +44,25 @@ t_links	*find_least_visited(t_links	*room_links)
 void algo(t_log *node_array)
 {
 	t_room *current_room;
-
 	current_room = node_array->rooms[node_array->start_index];
+
 	ft_putstr("\nStart Index: ");
 	ft_putnbr(node_array->start_index);
 	ft_putstr("\n");
+
 	while (current_room->room_type != 1)
 	{
 		current_room->visited++;
 		ft_putstr("\n");
-
 		ft_putstr("Name: ");
 		ft_putstr(current_room->name);
 		ft_putstr("; Type: ");
 		ft_putnbr(current_room->room_type);
-
 		current_room = find_least_visited(current_room->room_links)->room;
 	}
 	current_room->visited++;
-	ft_putstr("\n");
 
+	ft_putstr("\n");
 	ft_putstr("Name: ");
 	ft_putstr(current_room->name);
 	ft_putstr("; Type: ");
