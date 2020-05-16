@@ -1,4 +1,6 @@
 #!/bin/sh
+make clean
+make re
 if  [[ $1 = "-a" ]]; then
     echo "All maps being tested"
     sleep 0
@@ -24,5 +26,5 @@ elif [[ $1 = "-b" ]]; then
   sleep 1
   ./lem-in < maps/Big.map
 else
-    echo "You did not use option -a or -b"
+    ./lem-in < maps/Standard.map
 fi
