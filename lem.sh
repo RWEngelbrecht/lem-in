@@ -20,6 +20,8 @@ if  [[ $1 = "-a" ]]; then
     echo "Sleeping for 1 second"
     sleep 1
     ./lem-in < maps/test.map
+    sleep 1
+    ./lem-in < maps/Big.map
     echo "Complete"
 elif [[ $1 = "-b" ]]; then
   echo "Big map being tested"
