@@ -25,7 +25,7 @@ int main()
 	validate_file(raw_data);
 	printf("Storing Input\n");
 	node_array = create_node_array(raw_data);
-	// print_map(node_array);
+	print_map(node_array);
 	printf("====================\nStarting Algorithm\n");
 	algo(node_array);
 	printf("Algorithm Finished\n====================\n");
