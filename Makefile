@@ -17,8 +17,7 @@ FLGS = -Wall -Werror -Wextra
 DBFLG = -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer -ggdb3
 SRC = lem-in.c \
 	$(LIB) \
-	src/*.c \
-	algo.c
+	src/*.c
 
 all: $(MAKELIB) $(NAME)
 
