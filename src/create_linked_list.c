@@ -48,7 +48,7 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 				j++;
 			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
 				k++;
-			if (j == node_array->end_index)
+			if (j == node_array->end_index || k == node_array->start_index)
 			{
 				j = j ^ k;
 				k = j ^ k;

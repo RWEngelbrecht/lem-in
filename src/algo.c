@@ -41,9 +41,6 @@ void algo(t_log *node_array)
 	t_links *temp_links;
 
 	current_room = node_array->rooms[node_array->start_index];
-	ft_putstr("Start Index: ");
-	ft_putnbr(node_array->start_index);
-	ft_putstr("\n");
 
 	ft_putstr("Name: ");
 	ft_putstr(current_room->name);
