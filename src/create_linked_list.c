@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/15 19:19:43 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:08:00 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ t_room *create_node(t_str line)
 	room_data = ft_strsplit(line, ' ');
 	node = (t_room *)malloc(sizeof(t_room));
 	node->name = ft_strdup(room_data[0]);
-	node->x = atoi(room_data[1]);
-	node->y = atoi(room_data[2]);
-	ft_free_two_d_arr((void **)room_data);
-	node->room_links = (t_links *)malloc(sizeof(t_links));
+	node->x = ft_atoi(room_data[1]);
+	node->y = ft_atoi(room_data[2]);
+	node->room_links = NULL;
 	node->room_type = 2;
+	ft_free_two_d_arr((void **)room_data);
 	return (node);
 }
 
@@ -43,11 +43,17 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			k = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
 			temp_link = (t_links*)malloc(sizeof(t_links));
-			while (ft_strequ(rooms[0], node_array->rooms[j]->name) != 1)
+			while (!ft_strequ(rooms[0], node_array->rooms[j]->name))
 				j++;
-			while (ft_strequ(rooms[1], node_array->rooms[k]->name))
+			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
 				k++;
-			if (!node_array->rooms[j]->room_links->room)
+			if (j == node_array->end_index)
+			{
+				j = j ^ k;
+				k = j ^ k;
+				j = j ^ k;
+			}
+			if (node_array->rooms[j]->room_links == NULL)
 			{
 				temp_link->room = node_array->rooms[k];
 				temp_link->next = NULL;
