@@ -6,7 +6,7 @@
 #    By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/09 09:03:24 by rengelbr          #+#    #+#              #
-#    Updated: 2020/05/09 11:22:35 by rengelbr         ###   ########.fr        #
+#    Updated: 2020/05/18 16:21:22 by rengelbr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ $(MAKELIB):
 	@$(MAKE) $(MAKELIB)
 
 $(NAME):
+	gcc $(SRC) libft/libft.a -o $(NAME)
+
+lemin:
 	gcc $(SRC) libft/libft.a -o $(NAME)
 
 db:

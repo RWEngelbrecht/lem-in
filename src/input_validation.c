@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/14 17:03:44 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:10:16 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ int		is_room(char *line)
 	{
 		split_room = ft_strsplit(line, ' ');
 		if (ft_only_digits(split_room[1]) && ft_only_digits(split_room[2])
-			 && !ft_strnequ(split_room[0], "L", 1) && !ft_strnequ(split_room[0], "l", 1))
+			 && !ft_strncmp("L", split_room[0], 1) && !ft_strncmp("l", split_room[0], 1))
 		{
 			ft_free_two_d_arr((void**)split_room);
 			return (1);
+		}
+		else
+		{
+			NAME_ERR;
 		}
 		ft_free_two_d_arr((void**)split_room);
 	}
