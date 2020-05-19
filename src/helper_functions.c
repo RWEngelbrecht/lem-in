@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/14 17:08:55 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/18 16:19:36 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void print_map(t_log *node_array)
 	t_links *temp_link;
 
 	ft_putstr("All Links: \n");
-	for (int j = 0; node_array->rooms[j]->room_links->room; j++)
+	for (int j = 0; j < node_array->room_count; j++)
 	{
 		temp_room = node_array->rooms[j];
 		temp_link = temp_room->room_links;
