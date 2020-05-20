@@ -50,14 +50,29 @@ void algo(t_log *node_array)
 	while (current_room->room_type != 1 && current_room->room_links->room)
 	{
 		previous_room = current_room;
+		// ft_putstr("previous_room Name: ");
+		// ft_putstr(previous_room->name);
+		// ft_putstr("; previous_room Type: ");
+		// ft_putnbr(previous_room->room_type);
+		// ft_putstr("\n");
+		// ft_putstr("asdf\n");
 		current_room = find_least_visited(current_room->room_links)->room;
 		current_room->visited++;
 		ft_putstr("Name: ");
+
+
+
 		ft_putstr(current_room->name);
+
+
+
+		// ft_putstr(" ");
+		// ft_putstr(current_room->y);
 		ft_putstr("; Type: ");
 		ft_putnbr(current_room->room_type);
 		ft_putstr("\n");
 
+		// ft_putstr("zxcv\n");
 		if (!current_room->room_links && current_room->room_type != 1)
 		{
 			free_room(current_room);
