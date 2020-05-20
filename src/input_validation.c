@@ -46,8 +46,6 @@ int		is_room(char *line)
 			ft_free_two_d_arr((void**)split_room);
 			return (1);
 		}
-		else
-			NAME_ERR;
 		ft_free_two_d_arr((void**)split_room);
 	}
 	return (0);
