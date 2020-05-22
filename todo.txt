@@ -1,5 +1,5 @@
 1. Error check for No solution -> need to do if end is never found in algo
-2.
-3.
-4.
+2. Print the_path
+3. Figure out read_input malloc conundrum
+4. Free erryting before exiting on ERROR
 5.
