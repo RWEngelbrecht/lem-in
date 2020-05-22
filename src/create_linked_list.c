@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/22 11:44:18 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/22 12:42:59 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int j;
 	int k;
 	char **rooms;
-	t_links *temp_link1;
-	t_links *temp_link2;
 
 	while (raw_data[i])
 	{
