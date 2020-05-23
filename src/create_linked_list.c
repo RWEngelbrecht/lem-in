@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/20 13:08:17 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/22 12:42:59 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,33 @@ t_room *create_node(t_str line)
 	return (node);
 }
 
+t_links *start_links(t_log *node_array, int index)
+{
+	t_links *temp_link;
+
+	temp_link = (t_links*)malloc(sizeof(t_links));
+	temp_link->room = node_array->rooms[index];
+	temp_link->next = NULL;
+
+	return (temp_link);
+}
+
+t_links *add_link(t_log *node_array, int add_room_i, int room_link_i)
+{
+	t_links *temp_link;
+
+	temp_link = (t_links*)malloc(sizeof(t_links));
+	temp_link->room = node_array->rooms[add_room_i];
+	temp_link->next = node_array->rooms[room_link_i]->room_links;
+
+	return (temp_link);
+}
+
 t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 {
 	int j;
 	int k;
 	char **rooms;
-	t_links *temp_link;
 
 	while (raw_data[i])
 	{
@@ -43,7 +64,6 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			j = 0;
 			k = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
-			temp_link = (t_links*)malloc(sizeof(t_links));
 			while (!ft_strequ(rooms[0], node_array->rooms[j]->name))
 				j++;
 			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
@@ -54,18 +74,15 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 				k = j ^ k;
 				j = j ^ k;
 			}
-			if (node_array->rooms[j]->room_links == NULL)
-			{
-				temp_link->room = node_array->rooms[k];
-				temp_link->next = NULL;
-				node_array->rooms[j]->room_links = temp_link;
-			}
+			if (node_array->rooms[j]->room_links == NULL && node_array->rooms[k]->room_type != 1)
+				node_array->rooms[j]->room_links = start_links(node_array, k);
 			else if (node_array->rooms[j]->room_type != 1)
-			{
-				temp_link->room = node_array->rooms[k];
-				temp_link->next = node_array->rooms[j]->room_links;
-				node_array->rooms[j]->room_links = temp_link;
-			}
+				node_array->rooms[j]->room_links = add_link(node_array, k, j);
+			if (node_array->rooms[k]->room_links == NULL && k != node_array->end_index
+					&& j != node_array->start_index)
+				node_array->rooms[k]->room_links = start_links(node_array, j);
+			else if (node_array->rooms[k]->room_type != 1 && j != node_array->start_index)
+				node_array->rooms[k]->room_links = add_link(node_array, j, k);
 			ft_free_two_d_arr((void **)rooms);
 		}
 		i++;

@@ -39,7 +39,7 @@ int validate_file(t_str *data)
 		{
 			if (phase == 1)
 				phase = 2;
-			if (phase == 0 || start < 0 || end < 0)
+			if (phase == 0 || start != 0 || end != 0)
 				ORDER_ERR;
 		}
 		i++;
