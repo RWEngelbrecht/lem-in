@@ -25,12 +25,12 @@ int main()
 	node_array = create_node_array(raw_data);
 	// print_map(node_array);
 	the_path = algo(node_array);
-	// t_path *temp = the_path;
-	// while (temp != NULL) {
-	// 	printf("%s->\n", temp->room_name);
-	// 	temp = temp->next;
-	// }
-	// printf("NULL\n");
+	t_path *temp = the_path;
+	while (temp != NULL) {
+		printf("%s->\n", temp->room_name);
+		temp = temp->next;
+	}
+	printf("NULL\n");
 	// free_map(node_array);
 	return (0);
 }

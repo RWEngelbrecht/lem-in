@@ -82,12 +82,6 @@ t_path	*algo(t_log *node_array)
 
 	current_room = node_array->rooms[node_array->start_index];
 	the_path = NULL;
-
-	// ft_putstr("Name: ");
-	// ft_putstr(current_room->name);
-	// ft_putstr("; Type: ");
-	// ft_putnbr(current_room->room_type);
-	// ft_putstr("\n");
 	while (current_room->room_type != 1)
 	{
 		previous_room = current_room;
@@ -104,12 +98,6 @@ t_path	*algo(t_log *node_array)
 			current_room = node_array->rooms[node_array->start_index];
 		}
 		current_room->visited++;
-
-		// ft_putstr("Name: ");
-		// ft_putstr(current_room->name);
-		// ft_putstr("; Type: ");
-		// ft_putnbr(current_room->room_type);
-		// ft_putstr("\n");
 	}
 	return (the_path);
 }
