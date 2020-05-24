@@ -72,8 +72,17 @@ typedef struct		s_log
 typedef struct		s_path
 {
 	t_str			room_name;
-	struct s_path	*next;
+	struct 		s_path	*next;
 }					t_path;
+
+typedef struct		s_ants
+{
+	int		ant_name;
+	struct s_path *room;
+	struct s_ants *next;
+	struct s_ants *prev;
+}					t_ants;
+
 
 /*
 **	read_input functions
