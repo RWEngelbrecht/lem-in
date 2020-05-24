@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/21 15:42:12 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 12:57:51 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ typedef struct		s_path
 	struct s_path	*next;
 }					t_path;
 
+typedef struct		s_data
+{
+	t_str			line;
+	struct	s_data	*next;
+}					t_data;
+
+
 /*
 **	read_input functions
 */
@@ -82,7 +89,7 @@ int		is_command(char *line);
 int		is_comment(char *line);
 int		is_room(char *line);
 int		is_link(char *line);
-t_str	*read_input(char *line);
+t_data		*read_input(char *line);
 
 /*
 **	validation functions
@@ -91,9 +98,9 @@ int		check_name(t_log *data /*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
 void	validate(t_log *data);
-int		validate_file(t_str *data); //new
+int		validate_file(t_data *data); //new
 int		validate_room_name(char *line);
-int		validate_links(t_log *data, char **input_data, int links_index);
+int		validate_links(t_log *data, t_data *input_data);
 
 /*
 **	pathfinder functions
@@ -109,18 +116,19 @@ void	find_path(t_log *data);
 **	linked list functions
 */
 t_room	*create_node(t_str line);
-t_log	*create_node_array(t_str *raw_data);
-t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
+t_log	*create_node_array(t_data *raw_data);
+t_log	*create_links(t_log *node_array, t_data *raw_data, int i);
 
 /*
 **	helper functions
 */
-int		room_count(t_str *raw_data);
+int		room_count(t_data *raw_data);
 t_room	*find_room(t_log *data, t_str room_name);
 void	print_map(t_log *node_array);
 void	free_room(t_room *room);
 void	free_map(t_log *node_array);
 void	free_path(t_path *the_path);
+void	free_data(t_data *data);
 
 /*
 **	algo functions
