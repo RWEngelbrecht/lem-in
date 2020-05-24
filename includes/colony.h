@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/24 17:17:04 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 17:32:16 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,30 @@
 # define INTMAX 2147483648
 
 #define NAME_ERR                                  \
-	{                                               \
-		ft_putstr_fd("Error: Room names wrong\n", 2); \
-		exit(2);                                      \
-	}
+{                                               \
+	ft_putstr_fd("Error: Room names wrong\n", 2); \
+	exit(2);                                      \
+}
 #define LINK_ERR                                  \
-	{                                               \
-		ft_putstr_fd("Error: Room links wrong\n", 2); \
-		exit(2);                                      \
-	}
+{                                               \
+	ft_putstr_fd("Error: Room links wrong\n", 2); \
+	exit(2);                                      \
+}
 #define XY_ERR                                          \
-	{                                                     \
-		ft_putstr_fd("Error: Room coordinates wrong\n", 2); \
-		exit(2);                                            \
-	}
-#define ORDER_ERR                                  \
-	{                                                \
-		ft_putstr_fd("Error: Input order wrong\n", 2); \
-		exit(2);                                       \
-	}
+{                                                     \
+	ft_putstr_fd("Error: Room coordinates wrong\n", 2); \
+	exit(2);                                            \
+}
+#define ORDER_ERR									\
+{													\
+	ft_putstr_fd("Error: Input order wrong\n", 2);	\
+	exit(2);										\
+}
+#define SOLVE_ERR								\
+{												\
+	ft_putstr_fd("Error: Cannot solve\n", 2);	\
+	exit(2);									\
+}
 #include "../libft/libft.h"
 #include <stdio.h>
 
