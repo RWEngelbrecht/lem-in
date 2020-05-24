@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by hde-vos           #+#    #+#             */
-/*   Updated: 2020/05/24 17:19:50 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 17:29:34 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,7 @@ t_path	*algo(t_log *node_array)
 		// ft_putstr("\n");
 	}
 	free_path(the_path);
+	if (found < 1)
+		SOLVE_ERR;
 	return (shortest_path(paths, found));
 }
