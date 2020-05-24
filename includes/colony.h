@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/24 12:57:51 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 17:17:04 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,16 @@ void	free_room(t_room *room);
 void	free_map(t_log *node_array);
 void	free_path(t_path *the_path);
 void	free_data(t_data *data);
+t_path	*start_path(t_str room_name);
+void	add_to_path(t_path *the_path, t_str room_name);
+t_path	*copy_path(t_path *path);
+t_path *shortest_path(t_path **paths, int path_count);
 
 /*
 **	algo functions
 */
 t_path	*algo(t_log *node_array);
 void	find_path(t_log *data);
-t_links	*find_least_visited(t_links	*room_links);
+t_links *find_least_visited(t_links *room_links);
 
 #endif
