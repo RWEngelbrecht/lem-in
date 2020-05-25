@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by hde-vos           #+#    #+#             */
-/*   Updated: 2020/05/24 17:29:34 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/25 10:29:33 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,50 +77,34 @@ t_links *find_least_visited(t_links *room_links)
 			next_link = next_link->next;
 		}
 	}
-	// printf("return link would be to room [%s]\n", ret_link->room->name);
 	return (ret_link);
 }
 
 t_path	*algo(t_log *node_array)
 {
-	int found = 0;
-
 	t_room	*current_room;
 	t_room	*previous_room;
-	t_links	*temp_links;
 	t_path	*the_path;
 	t_path	**paths;
+	int		found;
 
 	current_room = node_array->rooms[node_array->start_index];
 	the_path = NULL;
 	paths = (t_path **)malloc(sizeof(t_path*) * 2048);
-	// ft_putstr("Name: ");
-	// ft_putstr(current_room->name);
-	// ft_putstr("; Type: ");
-	// ft_putnbr(current_room->room_type);
-	// ft_putstr("\n");
+	found = 0;
 	while (current_room->room_type != 1
 			&& node_array->rooms[node_array->start_index]->visited < node_array->room_count)
 	{
 		previous_room = current_room;
 		current_room = find_least_visited(current_room->room_links)->room;
-		if (!the_path){
+		if (!the_path)
 			the_path = start_path(current_room->name);
-		}
-		else if (!room_in_path(the_path, current_room->name)) {
+		else if (!room_in_path(the_path, current_room->name))
+		{
 			add_to_path(the_path, current_room->name);
-			if (current_room->room_type == 1 && !path_exists(paths, the_path, found)) {
+			if (current_room->room_type == 1 && !path_exists(paths, the_path, found))
+			{
 				paths[found] = copy_path(the_path);
-
-				// t_path *temp = paths[found];
-				// printf("\n\n===================\n\n");
-				// while (temp != NULL) {
-				// 	printf("%s->\n", temp->room_name);
-				// 	temp = temp->next;
-				// }
-				// printf("NULL");
-				// printf("\n\n===================\n\n");
-
 				free_path(the_path);
 				the_path = NULL;
 				current_room = node_array->rooms[node_array->start_index];
@@ -129,17 +113,12 @@ t_path	*algo(t_log *node_array)
 		}
 		else {
 			// if (previous_room->room_type != 0)
-				previous_room->dead_end = 1;
+			previous_room->dead_end = 1;
 			free_path(the_path);
 			the_path = NULL;
 			current_room = node_array->rooms[node_array->start_index];
 		}
 		current_room->visited++;
-		// ft_putstr("Name: ");
-		// ft_putstr(current_room->name);
-		// ft_putstr("; Type: ");
-		// ft_putnbr(current_room->room_type);
-		// ft_putstr("\n");
 	}
 	free_path(the_path);
 	if (found < 1)
