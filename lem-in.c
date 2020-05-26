@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/22 16:43:29 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 13:09:28 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ t_ants *create_ants(int ant_amount)
 int main()
 {
 	char *line;
-	t_str *raw_data;
-	t_log *node_array;
+	t_data	*raw_data;
+	t_log 	*node_array;
 	t_path *the_path;
 	t_path *the_temp;
 	t_ants *ants;

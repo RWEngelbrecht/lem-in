@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@42.fr>                  +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/20 09:53:28 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 11:50:03 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,28 @@
 
 #include <stdio.h>
 
-t_str		*read_input(char *line)
+t_data		*read_input(char *line)
 {
-	int i;
-	t_str *raw_data;
+	t_data *raw_data;
+	t_data *temp_data;
+	t_data *temp;
 
-	i = 0;
-	raw_data = (t_str *)malloc(sizeof(t_str) * 2048);
+	raw_data = NULL;
 	while (get_next_line(0, &line))
 	{
-		raw_data[i] = ft_strdup(line);
-		i++;
+		temp = (t_data *)malloc(sizeof(t_data));
+		temp->line = ft_strdup(line);
+		temp->next = NULL;
+		if (!raw_data)
+			raw_data = temp;
+		else
+		{
+			temp_data = raw_data;
+			while (temp_data->next)
+				temp_data = temp_data->next;
+			temp_data->next = temp;
+		}
 		free(line);
 	}
-	// free(raw_data[i]);
-	raw_data[i] = NULL;
 	return (raw_data);
 }

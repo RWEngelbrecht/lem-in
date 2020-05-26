@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/22 16:40:28 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 12:14:14 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,22 @@ int validate_room_name(char *line)
 	return (ft_strncmp("L", line, 1));
 }
 
-int validate_links(t_log *data, char **input_data, int links_index)
+int validate_links(t_log *data, t_data *input_data)
 {
-	int found;
 	char **link_rooms;
+	t_data *temp;
 
-	while (links_index < ft_two_d_arrsize(input_data))
+	temp = input_data;
+	while (temp != NULL)
 	{
-		if (is_link(input_data[links_index]))
+		if (is_link(temp->line))
 		{
-			link_rooms = ft_strsplit(input_data[links_index], '-');
+			link_rooms = ft_strsplit(temp->line, '-');
 			if (!find_room(data, link_rooms[0]) || !find_room(data, link_rooms[1]))
 				return (0);
 			ft_free_two_d_arr((void **)link_rooms);
 		}
-		links_index++;
+		temp = temp->next;
 	}
 	return (1);
 }
