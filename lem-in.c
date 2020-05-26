@@ -21,29 +21,53 @@ void ft_putroom(int ant_name, char *room_name)
 	ft_putstr(" ");
 }
 
-void	generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
+void free_ant(t_ants *ants, t_ants *ant)
+{
+	t_ants *curr_ant;
+	t_ants *next_ant;
+	t_ants *prev_ant;
+
+	curr_ant = ants;
+	while (ants->ant_name != ant->ant_name)
+		curr_ant = curr_ant->next;
+	if (curr_ant->prev)
+		prev_ant = curr_ant->prev;
+	if (curr_ant->next)
+		next_ant = curr_ant->next;
+	free(curr_ant);
+	prev_ant->next = next_ant;
+	next_ant->prev = prev_ant;
+}
+
+void generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 {
 	t_ants *last_ant;
 	t_ants *curr_ant;
 	t_ants *temp_ants;
 
 	last_ant = ants->next;
-	while (last_ant->room->room_name != node_array->rooms[node_array->end_index]->name)
+	while (last_ant)
 	{
 		curr_ant = ants;
 		while (curr_ant != last_ant)
 		{
 			if (!curr_ant->room)
 				curr_ant->room = the_path;
-			else
+			else if (!ft_strequ(curr_ant->room->room_name, node_array->rooms[node_array->end_index]->name))
 				curr_ant->room = curr_ant->room->next;
 			ft_putroom(curr_ant->ant_name, curr_ant->room->room_name);
 			if (curr_ant->next)
-					curr_ant = curr_ant->next;
+				curr_ant = curr_ant->next;
 		}
 		ft_putstr("\n");
 		if (curr_ant->next)
 			last_ant = curr_ant->next;
+		else if (ants)
+		{
+			temp_ants = ants->next;
+			free(ants);
+			ants = temp_ants;
+		}
 	}
 }
 
@@ -102,7 +126,7 @@ int main()
 		the_temp = the_temp->next;
 	}
 
-	ants = create_ants(10);
+	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
 	return (0);
 }
@@ -129,7 +153,6 @@ int main()
 // 	temp = temp->prev;
 // 	ft_putstr("\n");
 // }
-
 
 // curr_ant = ants;
 // if (!curr_ant->room)

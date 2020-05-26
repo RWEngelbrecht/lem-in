@@ -77,10 +77,11 @@ typedef struct		s_path
 
 typedef struct		s_ants
 {
-	int		ant_name;
-	struct s_path *room;
-	struct s_ants *next;
-	struct s_ants *prev;
+	int			ant_name;
+	int			moves;
+	struct	s_path *room;
+	struct	s_ants *next;
+	struct	s_ants *prev;
 }					t_ants;
 
 
