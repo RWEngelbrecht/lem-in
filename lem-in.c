@@ -12,6 +12,15 @@
 
 #include "includes/colony.h"
 
+void ft_putroom(int ant_name, char *room_name)
+{
+	ft_putstr("L");
+	ft_putnbr(ant_name);
+	ft_putstr("-");
+	ft_putstr(room_name);
+	ft_putstr(" ");
+}
+
 void	generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 {
 	t_ants *last_ant;
@@ -19,27 +28,21 @@ void	generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 	t_ants *temp_ants;
 
 	last_ant = ants->next;
-	while (last_ant->room != node_array->rooms[node_array->end_index])
+	while (last_ant->room->room_name != node_array->rooms[node_array->end_index]->name)
 	{
 		curr_ant = ants;
-		while (curr_ant->room == node_array->rooms[node_array->end_index])
-			curr_ant = curr_ant->next;
 		while (curr_ant != last_ant)
 		{
 			if (!curr_ant->room)
 				curr_ant->room = the_path;
 			else
 				curr_ant->room = curr_ant->room->next;
-			ft_putstr("L");
-			ft_putnbr(curr_ant->ant_name);
-			ft_putstr("-");
-			ft_putstr(curr_ant->room->room_name);
-			ft_putstr(" ");
+			ft_putroom(curr_ant->ant_name, curr_ant->room->room_name);
 			if (curr_ant->next)
-				curr_ant = curr_ant->next;
+					curr_ant = curr_ant->next;
 		}
 		ft_putstr("\n");
-		if (curr_ant)
+		if (curr_ant->next)
 			last_ant = curr_ant->next;
 	}
 }
