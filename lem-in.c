@@ -114,13 +114,13 @@ int main()
 	node_array = create_node_array(raw_data);
 	the_path = algo(node_array);
 
-	the_temp = the_path;
-	while (the_temp)
-	{
-		ft_putstr(the_temp->room_name);
-		ft_putstr("\n");
-		the_temp = the_temp->next;
-	}
+	// the_temp = the_path;
+	// while (the_temp)
+	// {
+	// 	ft_putstr(the_temp->room_name);
+	// 	ft_putstr("\n");
+	// 	the_temp = the_temp->next;
+	// }
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
 	return (0);
