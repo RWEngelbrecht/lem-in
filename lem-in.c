@@ -12,15 +12,6 @@
 
 #include "includes/colony.h"
 
-void ft_putroom(int ant_name, char *room_name)
-{
-	ft_putstr("L");
-	ft_putnbr(ant_name);
-	ft_putstr("-");
-	ft_putstr(room_name);
-	ft_putstr(" ");
-}
-
 void free_ant(t_ants *ants, t_ants *ant)
 {
 	t_ants *curr_ant;
@@ -130,53 +121,7 @@ int main()
 		ft_putstr("\n");
 		the_temp = the_temp->next;
 	}
-
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
 	return (0);
 }
-
-// temp = ants;
-// while (temp)
-// {
-// 	ft_putnbr(temp->ant_name);
-// 	ft_putstr(" ");
-// 	temp = temp->next;
-// 	ft_putstr("\n");
-// }
-// temp = ants;
-// while (temp)
-// {
-// 	if (!temp->next)
-// 		break ;
-// 	temp = temp->next;
-// }
-// while (temp)
-// {
-// 	ft_putnbr(temp->ant_name);
-// 	ft_putstr(" ");
-// 	temp = temp->prev;
-// 	ft_putstr("\n");
-// }
-
-// curr_ant = ants;
-// if (!curr_ant->room)
-// 	curr_ant->room = the_path;
-// if (curr_ant->room)
-// 	while (curr_ant->room == node_array->rooms[node_array->end_index])
-// 		curr_ant->room = curr_ant->room->next;
-// while (curr_ant->room)
-// {
-// 	if (!curr_ant->room)
-// 		curr_ant->room = the_path;
-// 	if (curr_ant->room)
-// 		curr_ant->room = curr_ant->room->next;
-// 	ft_putstr("L");
-// 	ft_putnbr(curr_ant->ant_name);
-// 	ft_putstr("-");
-// 	ft_putstr(curr_ant->room->room_name);
-// 	curr_ant = curr_ant->next;
-// 	ft_putstr(" ");
-// }
-// ft_putstr("\n");
-// last_ant = last_ant->next;

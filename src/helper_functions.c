@@ -83,16 +83,3 @@ void free_room(t_room *room)
 	if (room->room_links)
 		free(room->room_links);
 }
-
-void free_path(t_path *the_path)
-{
-	t_path *temp;
-
-	while (the_path != NULL)
-	{
-		temp = the_path;
-		the_path = the_path->next;
-		free(temp->room_name);
-		free(temp);
-	}
-}

@@ -133,11 +133,16 @@ void	free_map(t_log *node_array);
 void	free_path(t_path *the_path);
 
 /*
+**	helper functions2
+*/
+void ft_putroom(int ant_name, char *room_name);
+t_path	*start_path(t_str room_name);
+
+/*
 **	algo functions
 */
 t_path	*algo(t_log *node_array);
 void	find_path(t_log *data);
 t_links	*find_least_visited(t_links	*room_links);
-t_path	*start_path(t_str room_name);
 
 #endif
