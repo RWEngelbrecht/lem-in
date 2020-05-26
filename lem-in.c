@@ -41,33 +41,38 @@ void free_ant(t_ants *ants, t_ants *ant)
 
 void generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 {
-	t_ants *last_ant;
-	t_ants *curr_ant;
-	t_ants *temp_ants;
+	t_ants	*last_ant;
+	t_ants	*curr_ant;
+	t_ants	*temp_ants;
+	int			i;
 
+	i = 1;
 	last_ant = ants->next;
-	while (last_ant)
+	while (i == 1)
 	{
+		i = 0;
 		curr_ant = ants;
 		while (curr_ant != last_ant)
 		{
+			 i = 1;
 			if (!curr_ant->room)
 				curr_ant->room = the_path;
 			else if (!ft_strequ(curr_ant->room->room_name, node_array->rooms[node_array->end_index]->name))
 				curr_ant->room = curr_ant->room->next;
 			ft_putroom(curr_ant->ant_name, curr_ant->room->room_name);
+			if (ft_strequ(curr_ant->room->room_name, node_array->rooms[node_array->end_index]->name))
+			{
+				temp_ants = ants->next;
+				free(ants);
+				ants = temp_ants;
+			}
 			if (curr_ant->next)
 				curr_ant = curr_ant->next;
 		}
-		ft_putstr("\n");
+		if (i == 1)
+			ft_putstr("\n");
 		if (curr_ant->next)
 			last_ant = curr_ant->next;
-		else if (ants)
-		{
-			temp_ants = ants->next;
-			free(ants);
-			ants = temp_ants;
-		}
 	}
 }
 
