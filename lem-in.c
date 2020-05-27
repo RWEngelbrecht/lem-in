@@ -12,24 +12,6 @@
 
 #include "includes/colony.h"
 
-void free_ant(t_ants *ants, t_ants *ant)
-{
-	t_ants *curr_ant;
-	t_ants *next_ant;
-	t_ants *prev_ant;
-
-	curr_ant = ants;
-	while (ants->ant_name != ant->ant_name)
-		curr_ant = curr_ant->next;
-	if (curr_ant->prev)
-		prev_ant = curr_ant->prev;
-	if (curr_ant->next)
-		next_ant = curr_ant->next;
-	free(curr_ant);
-	prev_ant->next = next_ant;
-	next_ant->prev = prev_ant;
-}
-
 void generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 {
 	t_ants	*last_ant;
@@ -98,30 +80,51 @@ t_ants *create_ants(int ant_amount)
 	return (head);
 }
 
+void print_map_before_moving_ants_one_by_one_at_a_time(t_data *raw_data)
+{
+	t_data	*temp_data;
+
+	temp_data = raw_data;
+	while (temp_data)
+	{
+		ft_putstr(temp_data->line);
+		ft_putstr("\n");
+		temp_data = temp_data->next;
+	}
+}
+
+void free_ants(t_ants *ants)
+{
+	t_ants *temp;
+
+	temp = ants;
+	while (ants)
+	{
+		temp = ants->next;
+		free(ants);
+		ants = temp;
+	}
+	free(ants);
+}
+
 int main()
 {
 	char *line;
 	t_data	*raw_data;
-	t_log 	*node_array;
-	t_path *the_path;
-	t_path *the_temp;
-	t_ants *ants;
-	t_ants *temp;
+	t_log		*node_array;
+	t_path	*the_path;
+	t_ants	*ants;
 
 	line = NULL;
 	raw_data = read_input(line);
 	validate_file(raw_data);
 	node_array = create_node_array(raw_data);
 	the_path = algo(node_array);
-
-	// the_temp = the_path;
-	// while (the_temp)
-	// {
-	// 	ft_putstr(the_temp->room_name);
-	// 	ft_putstr("\n");
-	// 	the_temp = the_temp->next;
-	// }
+	print_map_before_moving_ants_one_by_one_at_a_time(raw_data);
+	if (raw_data)
+		free_data(raw_data);
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
+	free_ants(ants);
 	return (0);
 }
