@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/24 17:16:28 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/28 20:08:51 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,12 @@ void free_links(t_room *room)
 {
 	t_links *temp;
 
-	ft_putstr("asdf");
 	while (room->room_links)
 	{
 		temp = room->room_links;
 		room->room_links = room->room_links->next;
 		free(temp);
 	}
-	ft_putstr("qwer");
 	free(room->room_links);
 }
 
@@ -84,11 +82,8 @@ void free_map(t_log *node_array)
 	int i;
 
 	i = 0;
-	while (node_array->rooms[i])
+	while (i < node_array->room_count)
 	{
-		ft_putstr("========");
-		ft_putstr(node_array->rooms[i]->name);
-		ft_putstr("========\n");
 		free_links(node_array->rooms[i]);
 		free(node_array->rooms[i]->name);
 		free(node_array->rooms[i]->next);
