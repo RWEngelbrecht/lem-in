@@ -68,14 +68,12 @@ void free_links(t_room *room)
 {
 	t_links *temp;
 
-	ft_putstr("asdf");
 	while (room->room_links)
 	{
 		temp = room->room_links;
 		room->room_links = room->room_links->next;
 		free(temp);
 	}
-	ft_putstr("qwer");
 	free(room->room_links);
 }
 
@@ -86,9 +84,6 @@ void free_map(t_log *node_array)
 	i = 0;
 	while (node_array->rooms[i])
 	{
-		ft_putstr("========");
-		ft_putstr(node_array->rooms[i]->name);
-		ft_putstr("========\n");
 		free_links(node_array->rooms[i]);
 		free(node_array->rooms[i]->name);
 		free(node_array->rooms[i]->next);
