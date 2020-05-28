@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/24 12:58:48 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/28 17:09:23 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,8 @@ t_log *create_node_array(t_data *raw_data)
 	}
 	if (!validate_links(node_array, temp))
 	{
-		LINK_ERR;
 		free_map(node_array);
-		return (NULL);
+		LINK_ERR;
 	}
 	create_links(node_array, raw_data, i);
 	return (node_array);
