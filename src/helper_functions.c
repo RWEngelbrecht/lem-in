@@ -33,12 +33,20 @@ t_room *find_room(t_log *data, t_str room_name)
 	int i;
 
 	i = 0;
-	while (i < data->room_count)
+	ft_putstr("\n");
+	ft_putnbr(data->room_count);
+	ft_putstr(": ");
+	ft_putstr(room_name);
+	ft_putstr("\n");
+	while (i < data->room_count - 1)
 	{
+		ft_putnbr(i);
+		ft_putstr(" ");
 		if (ft_strequ(data->rooms[i]->name, room_name))
 			return (data->rooms[i]);
 		i++;
 	}
+	ft_putstr("\n");
 	return NULL;
 }
 
@@ -64,24 +72,38 @@ void print_map(t_log *node_array)
 	ft_putstr("\n");
 }
 
+void free_links(t_room *room)
+{
+	t_links *temp;
+
+	while (room->room_links && room->room_links->next)
+	{
+		temp = room->room_links;
+		if (room->room_links->next)
+			room->room_links = room->room_links->next;
+		free(temp);
+	}
+}
+
 void free_map(t_log *node_array)
 {
 	int i;
 
+	i = 0;
 	while (node_array->rooms[i])
 	{
-		free_room(node_array->rooms[i]);
+		// if (node_array->rooms[i]->room_links && node_array->rooms[i]->room_links->next)
+		// 	free(node_array->rooms[i]->room_links->next);
+		// Moet dalk room_links->next ook free;
+		free_links(node_array->rooms[i]);
+		free(node_array->rooms[i]->room_links);
+		free(node_array->rooms[i]->name);
+		free(node_array->rooms[i]->next);
+		free(node_array->rooms[i]);
+		i++;
 	}
+	free(node_array->rooms);
 	free(node_array);
-}
-
-void free_room(t_room *room)
-{
-	free(room->name);
-	if (room->next)
-		free(room->next);
-	if (room->room_links)
-		free(room->room_links);
 }
 
 void free_path(t_path *the_path)

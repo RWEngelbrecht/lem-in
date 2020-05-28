@@ -66,7 +66,6 @@ t_log *create_links(t_log *node_array, t_data *raw_data, int i)
 			j = 0;
 			k = 0;
 			rooms = ft_strsplit(temp->line, '-');
-			// printf("room[0] == %s; room[1] == %s\n", rooms[0], rooms[1]);
 			while (!ft_strequ(rooms[0], node_array->rooms[j]->name))
 				j++;
 			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
@@ -141,8 +140,10 @@ t_log *create_node_array(t_data *raw_data)
 		i++;
 	}
 	if (!validate_links(node_array, temp))
-	{	// free erryting
+	{
 		LINK_ERR;
+		free_map(node_array);
+		return (NULL);
 	}
 	create_links(node_array, raw_data, i);
 	return (node_array);

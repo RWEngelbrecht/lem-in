@@ -76,7 +76,10 @@ int validate_links(t_log *data, t_data *input_data)
 		{
 			link_rooms = ft_strsplit(temp->line, '-');
 			if (!find_room(data, link_rooms[0]) || !find_room(data, link_rooms[1]))
+			{
+				ft_free_two_d_arr((void **)link_rooms);
 				return (0);
+			}
 			ft_free_two_d_arr((void **)link_rooms);
 		}
 		temp = temp->next;

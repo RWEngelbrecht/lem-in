@@ -23,7 +23,6 @@
 #define LINK_ERR                                  \
 {                                               \
 	ft_putstr_fd("Error: Room links wrong\n", 2); \
-	exit(2);                                      \
 }
 #define XY_ERR                                          \
 {                                                     \
@@ -70,7 +69,6 @@ typedef struct		s_log
 	int				start_index;
 	int				end_index;
 	int				room_count;
-	t_str			*links;
 	struct	s_room	**rooms;
 }					t_log;
 

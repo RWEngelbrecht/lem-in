@@ -86,7 +86,8 @@ t_path	*algo(t_log *node_array)
 	t_room	*previous_room;
 	t_path	*the_path;
 	t_path	**paths;
-	int		found;
+	int			found;
+	int 		i;
 
 	current_room = node_array->rooms[node_array->start_index];
 	the_path = NULL;
@@ -123,8 +124,9 @@ t_path	*algo(t_log *node_array)
 		SOLVE_ERR;
 	free_path(the_path);
 	the_path = copy_path(shortest_path(paths, found));
-	while (paths[--found])
-		free_path(paths[found]);
+	i = 0;
+	while (paths[i])
+		free_path(paths[i++]);
 	free(paths);
 	return (the_path);
 }

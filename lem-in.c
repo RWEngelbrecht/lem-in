@@ -118,14 +118,31 @@ int main()
 
 	line = NULL;
 	raw_data = read_input(line);
-	validate_file(raw_data);
-	node_array = create_node_array(raw_data);
-	the_path = algo(node_array);
-	print_map_before_moving_ants_one_by_one_at_a_time(raw_data);
+	if (validate_file(raw_data))
+	{
+		node_array = create_node_array(raw_data);
+		if (node_array)
+		{
+			if (node_array->rooms[node_array->start_index]->room_links)
+			{
+				the_path = algo(node_array);
+				if (the_path)
+				{
+					print_map_before_moving_ants_one_by_one_at_a_time(raw_data);
+					ants = create_ants(node_array->ant_amnt + 1);
+					generate_moves(ants, the_path, node_array);
+					free_ants(ants);
+				}
+				free_path(the_path);
+			}
+			else
+			{
+				ft_putstr("Error: No valid path\n");
+			}
+			free_map(node_array);
+		}
+	}
 	if (raw_data)
 		free_data(raw_data);
-	ants = create_ants(node_array->ant_amnt + 1);
-	generate_moves(ants, the_path, node_array);
-	// free_ants(ants);
 	return (0);
 }
