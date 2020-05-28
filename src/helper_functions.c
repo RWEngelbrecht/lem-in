@@ -33,20 +33,12 @@ t_room *find_room(t_log *data, t_str room_name)
 	int i;
 
 	i = 0;
-	ft_putstr("\n");
-	ft_putnbr(data->room_count);
-	ft_putstr(": ");
-	ft_putstr(room_name);
-	ft_putstr("\n");
-	while (i < data->room_count - 1)
+	while (i < data->room_count)
 	{
-		ft_putnbr(i);
-		ft_putstr(" ");
 		if (ft_strequ(data->rooms[i]->name, room_name))
 			return (data->rooms[i]);
 		i++;
 	}
-	ft_putstr("\n");
 	return NULL;
 }
 
@@ -76,13 +68,15 @@ void free_links(t_room *room)
 {
 	t_links *temp;
 
-	while (room->room_links && room->room_links->next)
+	ft_putstr("asdf");
+	while (room->room_links)
 	{
 		temp = room->room_links;
-		if (room->room_links->next)
-			room->room_links = room->room_links->next;
+		room->room_links = room->room_links->next;
 		free(temp);
 	}
+	ft_putstr("qwer");
+	free(room->room_links);
 }
 
 void free_map(t_log *node_array)
@@ -92,11 +86,10 @@ void free_map(t_log *node_array)
 	i = 0;
 	while (node_array->rooms[i])
 	{
-		// if (node_array->rooms[i]->room_links && node_array->rooms[i]->room_links->next)
-		// 	free(node_array->rooms[i]->room_links->next);
-		// Moet dalk room_links->next ook free;
+		ft_putstr("========");
+		ft_putstr(node_array->rooms[i]->name);
+		ft_putstr("========\n");
 		free_links(node_array->rooms[i]);
-		free(node_array->rooms[i]->room_links);
 		free(node_array->rooms[i]->name);
 		free(node_array->rooms[i]->next);
 		free(node_array->rooms[i]);

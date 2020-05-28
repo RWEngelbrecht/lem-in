@@ -142,6 +142,7 @@ t_log *create_node_array(t_data *raw_data)
 	if (!validate_links(node_array, temp))
 	{
 		free_map(node_array);
+		free_data(raw_data);
 		LINK_ERR;
 	}
 	create_links(node_array, raw_data, i);
