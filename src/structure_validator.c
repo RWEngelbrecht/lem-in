@@ -44,5 +44,7 @@ int validate_file(t_data *data)
 		}
 		temp = temp->next;
 	}
+	if (phase != 2)
+		LINK_ERR;
 	return (1);
 }
