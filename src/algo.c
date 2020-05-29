@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by hde-vos           #+#    #+#             */
-/*   Updated: 2020/05/27 16:25:41 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 09:04:43 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int path_exists(t_path **paths, t_path *path, int path_count)
 	return (0);
 }
 
-t_links *find_least_visited(t_links *room_links)
+t_room *find_least_visited(t_links *room_links)
 {
 	t_links *next_link;
 	t_links *ret_link;
@@ -76,8 +76,9 @@ t_links *find_least_visited(t_links *room_links)
 				ret_link = next_link;
 			next_link = next_link->next;
 		}
+		return (ret_link->room);
 	}
-	return (ret_link);
+	return (NULL);
 }
 
 t_path	*algo(t_log *node_array)
@@ -97,7 +98,7 @@ t_path	*algo(t_log *node_array)
 			&& node_array->rooms[node_array->start_index]->visited < node_array->room_count)
 	{
 		previous_room = current_room;
-		current_room = find_least_visited(current_room->room_links)->room;
+		current_room = find_least_visited(current_room->room_links);
 		if (!the_path)
 			the_path = start_path(current_room->name);
 		else if (!room_in_path(the_path, current_room->name))
@@ -112,7 +113,8 @@ t_path	*algo(t_log *node_array)
 				found++;
 			}
 		}
-		else {
+		else
+		{
 			previous_room->dead_end = 1;
 			free_path(the_path);
 			the_path = NULL;

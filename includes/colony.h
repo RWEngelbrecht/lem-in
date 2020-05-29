@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/28 17:09:11 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 08:43:20 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,6 @@ void ft_putroom(int ant_name, char *room_name);
 */
 t_path	*algo(t_log *node_array);
 void	find_path(t_log *data);
-t_links *find_least_visited(t_links *room_links);
+t_room *find_least_visited(t_links *room_links);
 
 #endif
