@@ -3,6 +3,7 @@
  * Ant amount overflow
  * Check for leaks
  * Fix seg. fault if you remove link 14 and 15 in test.map
+ * Remove room 7 && 8 and all associated links gives a seg. fault
 
  Fixed:
  * Seg. fault on free_map() if room/s is removed

@@ -40,6 +40,11 @@
 	ft_putstr_fd("Error: Cannot solve\n", 2);	\
 	exit(2);									\
 }
+#define ANT_ERR								\
+{												\
+	ft_putstr_fd("Error: Ant amount is not valid\n", 2);	\
+	exit(2);									\
+}
 #include "../libft/libft.h"
 #include <stdio.h>
 

@@ -110,7 +110,8 @@ t_log *create_node_array(t_data *raw_data)
 	{
 		if (ft_only_digits(temp->line)) {
 			node_array->ant_amnt = ft_atoi(temp->line);
-			// printf("ant amnt set: %i\n", node_array->ant_amnt);
+			if (!ft_strequ(ft_itoa(node_array->ant_amnt), temp->line))
+				ANT_ERR;
 		}
 		else if (is_command(temp->line))
 		{

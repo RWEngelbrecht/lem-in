@@ -14,23 +14,19 @@
 
 char *ft_strrev(char *str)
 {
-  int i;
-  int j;
-  char temp;
+	char	tmp;
+	int		i;
+	int		len;
 
-  i = ft_strlen(str) - 1;
-  j = 0;
-  while (str[i])
-  {
-    write(1, "a", 1);
-    temp = str[j];
-    str[j] = str[i];
-    str[i] = temp;
-    i--;
-    j++;
-  }
-  ft_putstr("\n");
-  ft_putstr(str);
-  ft_putstr("\n");
-  return (str);
+	i = 0;
+	len = (int)ft_strlen(str);
+	while (len - 1 > i)
+	{
+		tmp = str[i];
+		str[i] = str[len - 1];
+		str[len - 1] = tmp;
+		len--;
+		i++;
+	}
+	return (str);
 }
