@@ -1,5 +1,8 @@
-1. Free erryting before exiting on ERROR (leaks)
-2. more testing
-3. print initial input
-4. read PDF and marking sheet for edge case requirements
-5. final mock marking test
+ * Free on Errors
+ * Seg. faults on incorrect inputs (ie. remove all links/rooms/ant amount)
+ * Ant amount overflow
+ * Check for leaks
+ * Fix seg. fault if you remove link 14 and 15 in test.map
+
+ Fixed:
+ * Seg. fault on free_map() if room/s is removed
