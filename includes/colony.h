@@ -33,12 +33,11 @@
 #define ORDER_ERR									\
 {													\
 	ft_putstr_fd("Error: Input order wrong\n", 2);	\
-	exit(2);										\
+	return (0);										\
 }
 #define SOLVE_ERR								\
 {												\
 	ft_putstr_fd("Error: Cannot solve\n", 2);	\
-	exit(2);									\
 }
 #define ANT_ERR								\
 {												\

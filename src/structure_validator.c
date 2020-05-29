@@ -29,7 +29,10 @@ int validate_file(t_data *data)
 			if (phase != 1)
 				ORDER_ERR;
 			if (!validate_room_name(temp->line))
-				NAME_ERR;
+			{
+				ft_putstr_fd("Error: Room names wrong\n", 2);
+				return (0);
+			}
 			if (start == 1)
 				start = 0;
 			else if (end == 1)
@@ -45,6 +48,9 @@ int validate_file(t_data *data)
 		temp = temp->next;
 	}
 	if (phase != 2)
-		LINK_ERR;
+	{
+		ft_putstr("Error: Room links wrong\n");
+		return (0);
+	}
 	return (1);
 }

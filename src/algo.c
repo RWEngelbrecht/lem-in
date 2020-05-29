@@ -123,12 +123,19 @@ t_path	*algo(t_log *node_array)
 		current_room->visited++;
 	}
 	if (found < 1)
+	{
 		SOLVE_ERR;
-	free_path(the_path);
-	the_path = copy_path(shortest_path(paths, found));
-	i = 0;
-	while (paths[i])
-		free_path(paths[i++]);
-	free(paths);
+		free(paths);
+		return (NULL);
+	}
+	else
+	{
+		free_path(the_path);
+		the_path = copy_path(shortest_path(paths, found));
+		i = 0;
+		while (paths[i])
+			free_path(paths[i++]);
+		free(paths);
+	}
 	return (the_path);
 }
