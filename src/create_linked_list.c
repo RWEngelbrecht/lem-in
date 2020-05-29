@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/29 08:55:29 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 15:05:04 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,10 @@ t_log *create_node_array(t_data *raw_data)
 			ant_amount = ft_itoa(node_array->ant_amnt);
 			if (!ft_strequ(ant_amount, temp->line) || node_array->ant_amnt < 1)
 			{
-					free(ant_amount);
-					free(node_array->rooms);
-					free(node_array);
-					free_data(raw_data);
+				free(ant_amount);
+				free(node_array->rooms);
+				free(node_array);
+				free_data(raw_data);
 				ANT_ERR;
 			}
 			free(ant_amount);
