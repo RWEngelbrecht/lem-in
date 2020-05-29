@@ -98,6 +98,7 @@ t_log *create_node_array(t_data *raw_data)
 	int		j;
 	t_log	*node_array;
 	t_data	*temp;
+	char	*ant_amount;
 
 	i = 0;
 	j = 0;
@@ -110,9 +111,10 @@ t_log *create_node_array(t_data *raw_data)
 		if (ft_only_digits(temp->line))
 		{
 			node_array->ant_amnt = ft_atoi(temp->line);
-			if (!ft_strequ(ft_itoa(node_array->ant_amnt), temp->line) || node_array->ant_amnt < 1)
+			ant_amount = ft_itoa(node_array->ant_amnt);
+			if (!ft_strequ(ant_amount, temp->line) || node_array->ant_amnt < 1)
 			{
-				free(node_array->rooms->);
+				free(ant_amount);
 				free(node_array->rooms);
 				free(node_array);
 				free_data(raw_data);
