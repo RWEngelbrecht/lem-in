@@ -117,7 +117,7 @@ int main()
 
 	line = NULL;
 	raw_data = read_input(line);
-	if (validate_file(raw_data))
+	if (raw_data && validate_file(raw_data))
 	{
 		node_array = create_node_array(raw_data);
 		if (node_array->rooms[node_array->start_index]->room_links)

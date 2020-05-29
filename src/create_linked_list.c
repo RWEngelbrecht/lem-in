@@ -114,15 +114,10 @@ t_log *create_node_array(t_data *raw_data)
 			ant_amount = ft_itoa(node_array->ant_amnt);
 			if (!ft_strequ(ant_amount, temp->line) || node_array->ant_amnt < 1)
 			{
-				// if (node_array->rooms[1])
-				// 	free_map(node_array);
-				// else
-				// {
 					free(ant_amount);
 					free(node_array->rooms);
 					free(node_array);
 					free_data(raw_data);
-				// }
 				ANT_ERR;
 			}
 			free(ant_amount);
