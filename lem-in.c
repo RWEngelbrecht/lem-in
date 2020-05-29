@@ -111,7 +111,7 @@ int main()
 {
 	char		*line;
 	t_data	*raw_data;
-	t_log	*node_array;
+	t_log		*node_array;
 	t_path	*the_path;
 	t_ants	*ants;
 
