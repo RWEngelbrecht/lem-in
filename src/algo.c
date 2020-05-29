@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by hde-vos           #+#    #+#             */
-/*   Updated: 2020/05/29 09:04:43 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 15:10:25 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,21 @@ t_path	*algo(t_log *node_array)
 	the_path = NULL;
 	paths = (t_path **)malloc(sizeof(t_path*) * (node_array->room_count + 1));
 	found = 0;
-	while (current_room->room_type != 1
-			&& node_array->rooms[node_array->start_index]->visited < node_array->room_count)
+	while (node_array->rooms[node_array->start_index]->visited < node_array->room_count)
 	{
 		previous_room = current_room;
 		current_room = find_least_visited(current_room->room_links);
 		if (!the_path)
+		{
 			the_path = start_path(current_room->name);
-		else if (!room_in_path(the_path, current_room->name))
+			if (current_room->room_type == 1)
+			{
+				paths[found] = copy_path(the_path);
+				found++;
+				break;
+			}
+		}
+		else if (!room_in_path(the_path, current_room->name) && current_room->room_type != 0)
 		{
 			add_to_path(the_path, current_room->name);
 			if (current_room->room_type == 1 && !path_exists(paths, the_path, found))
