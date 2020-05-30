@@ -30,6 +30,13 @@ t_data		*read_input(char *line)
 	raw_data = NULL;
 	while (get_next_line(0, &line))
 	{
+		if (ft_iswhitespace(line[0]) || ft_strequ(line, ""))
+		{
+			free(line);
+			free_data(raw_data);
+			ft_putstr("ERROR: Only whitespace in line\n");
+			return (NULL);
+		}
 		temp = (t_data *)malloc(sizeof(t_data));
 		temp->line = ft_strdup(line);
 		temp->next = NULL;

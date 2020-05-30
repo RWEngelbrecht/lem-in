@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/27 16:26:06 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/28 20:23:42 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 		curr_ant = ants;
 		while (curr_ant != last_ant)
 		{
-			 i = 1;
+			i = 1;
 			if (!curr_ant->room)
 				curr_ant->room = the_path;
 			else if (!ft_strequ(curr_ant->room->room_name, node_array->rooms[node_array->end_index]->name))
@@ -36,7 +36,6 @@ void generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 			if (ft_strequ(curr_ant->room->room_name, node_array->rooms[node_array->end_index]->name))
 			{
 				temp_ants = ants->next;
-				free(ants);
 				ants = temp_ants;
 			}
 			if (curr_ant->next)
@@ -110,7 +109,7 @@ void free_ants(t_ants *ants)
 
 int main()
 {
-	char *line;
+	char		*line;
 	t_data	*raw_data;
 	t_log		*node_array;
 	t_path	*the_path;
@@ -118,14 +117,27 @@ int main()
 
 	line = NULL;
 	raw_data = read_input(line);
-	validate_file(raw_data);
-	node_array = create_node_array(raw_data);
-	the_path = algo(node_array);
-	print_map_before_moving_ants_one_by_one_at_a_time(raw_data);
+	if (raw_data && validate_file(raw_data))
+	{
+		node_array = create_node_array(raw_data);
+		if (node_array->rooms[node_array->start_index]->room_links)
+		{
+			the_path = algo(node_array);
+			if (the_path)
+			{
+				print_map_before_moving_ants_one_by_one_at_a_time(raw_data);
+				ants = create_ants(node_array->ant_amnt + 1);
+				generate_moves(ants, the_path, node_array);
+				if (ants)
+					free_ants(ants);
+			}
+			free_path(the_path);
+		}
+		else
+			ft_putstr("Error: No valid path\n");
+		free_map(node_array);
+	}
 	if (raw_data)
 		free_data(raw_data);
-	ants = create_ants(node_array->ant_amnt + 1);
-	generate_moves(ants, the_path, node_array);
-	// free_ants(ants);
 	return (0);
 }

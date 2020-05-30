@@ -14,7 +14,7 @@ NAME = lem-in
 MAKELIB = -C libft
 LIB = libft/libft.a
 FLGS = -Wall -Werror -Wextra
-DBFLG = -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer -ggdb3
+DBFLG = -Wall -Werror -Wextra -ggdb3
 SRC = lem-in.c \
 	$(LIB) \
 	src/*.c
@@ -28,7 +28,7 @@ $(NAME):
 	gcc $(SRC) libft/libft.a -o $(NAME)
 
 lemin:
-	gcc $(SRC) libft/libft.a -o $(NAME)
+	gcc $(FLGS) $(SRC) libft/libft.a -o $(NAME)
 
 db:
 	gcc $(DBFLG) $(SRC) libft/libft.a -o $(NAME)

@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by hde-vos           #+#    #+#             */
-/*   Updated: 2020/05/27 16:25:41 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 15:10:25 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int path_exists(t_path **paths, t_path *path, int path_count)
 	return (0);
 }
 
-t_links *find_least_visited(t_links *room_links)
+t_room *find_least_visited(t_links *room_links)
 {
 	t_links *next_link;
 	t_links *ret_link;
@@ -76,8 +76,9 @@ t_links *find_least_visited(t_links *room_links)
 				ret_link = next_link;
 			next_link = next_link->next;
 		}
+		return (ret_link->room);
 	}
-	return (ret_link);
+	return (NULL);
 }
 
 t_path	*algo(t_log *node_array)
@@ -86,20 +87,28 @@ t_path	*algo(t_log *node_array)
 	t_room	*previous_room;
 	t_path	*the_path;
 	t_path	**paths;
-	int		found;
+	int			found;
+	int 		i;
 
 	current_room = node_array->rooms[node_array->start_index];
 	the_path = NULL;
 	paths = (t_path **)malloc(sizeof(t_path*) * (node_array->room_count + 1));
 	found = 0;
-	while (current_room->room_type != 1
-			&& node_array->rooms[node_array->start_index]->visited < node_array->room_count)
+	while (node_array->rooms[node_array->start_index]->visited < node_array->room_count)
 	{
 		previous_room = current_room;
-		current_room = find_least_visited(current_room->room_links)->room;
+		current_room = find_least_visited(current_room->room_links);
 		if (!the_path)
+		{
 			the_path = start_path(current_room->name);
-		else if (!room_in_path(the_path, current_room->name))
+			if (current_room->room_type == 1)
+			{
+				paths[found] = copy_path(the_path);
+				found++;
+				break;
+			}
+		}
+		else if (!room_in_path(the_path, current_room->name) && current_room->room_type != 0)
 		{
 			add_to_path(the_path, current_room->name);
 			if (current_room->room_type == 1 && !path_exists(paths, the_path, found))
@@ -111,7 +120,8 @@ t_path	*algo(t_log *node_array)
 				found++;
 			}
 		}
-		else {
+		else
+		{
 			previous_room->dead_end = 1;
 			free_path(the_path);
 			the_path = NULL;
@@ -120,11 +130,19 @@ t_path	*algo(t_log *node_array)
 		current_room->visited++;
 	}
 	if (found < 1)
+	{
 		SOLVE_ERR;
-	free_path(the_path);
-	the_path = copy_path(shortest_path(paths, found));
-	while (paths[--found])
-		free_path(paths[found]);
-	free(paths);
+		free(paths);
+		return (NULL);
+	}
+	else
+	{
+		free_path(the_path);
+		the_path = copy_path(shortest_path(paths, found));
+		i = 0;
+		while (paths[i])
+			free_path(paths[i++]);
+		free(paths);
+	}
 	return (the_path);
 }

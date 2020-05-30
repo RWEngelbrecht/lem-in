@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/24 12:58:48 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 15:05:04 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_log *create_links(t_log *node_array, t_data *raw_data, int i)
 			j = 0;
 			k = 0;
 			rooms = ft_strsplit(temp->line, '-');
-			// printf("room[0] == %s; room[1] == %s\n", rooms[0], rooms[1]);
 			while (!ft_strequ(rooms[0], node_array->rooms[j]->name))
 				j++;
 			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
@@ -81,10 +80,9 @@ t_log *create_links(t_log *node_array, t_data *raw_data, int i)
 				node_array->rooms[j]->room_links = start_links(node_array, k);
 			else if (node_array->rooms[j]->room_type != 1)
 				node_array->rooms[j]->room_links = add_link(node_array, k, j);
-			if (node_array->rooms[k]->room_links == NULL && k != node_array->end_index
-					&& j != node_array->start_index)
+			if (node_array->rooms[k]->room_links == NULL)
 				node_array->rooms[k]->room_links = start_links(node_array, j);
-			else if (node_array->rooms[k]->room_type != 1 && j != node_array->start_index)
+			else if (node_array->rooms[k]->room_type != 1)
 				node_array->rooms[k]->room_links = add_link(node_array, j, k);
 			ft_free_two_d_arr((void **)rooms);
 		}
@@ -100,6 +98,7 @@ t_log *create_node_array(t_data *raw_data)
 	int		j;
 	t_log	*node_array;
 	t_data	*temp;
+	char	*ant_amount;
 
 	i = 0;
 	j = 0;
@@ -109,13 +108,22 @@ t_log *create_node_array(t_data *raw_data)
 	temp = raw_data;
 	while (temp && !is_link(temp->line))
 	{
-		if (ft_only_digits(temp->line)) {
+		if (ft_only_digits(temp->line))
+		{
 			node_array->ant_amnt = ft_atoi(temp->line);
-			// printf("ant amnt set: %i\n", node_array->ant_amnt);
+			ant_amount = ft_itoa(node_array->ant_amnt);
+			if (!ft_strequ(ant_amount, temp->line) || node_array->ant_amnt < 1)
+			{
+				free(ant_amount);
+				free(node_array->rooms);
+				free(node_array);
+				free_data(raw_data);
+				ANT_ERR;
+			}
+			free(ant_amount);
 		}
 		else if (is_command(temp->line))
 		{
-			// printf("temp->line [%s] is command\ntemp->next->line [%s] is room?", temp->line, temp->next->line);
 			node_array->rooms[j] = create_node(temp->next->line);
 			if (ft_strequ("##start", temp->line))
 			{
@@ -133,7 +141,6 @@ t_log *create_node_array(t_data *raw_data)
 		}
 		else if (is_room(temp->line))
 		{
-			// printf("temp->line [%s] is room\n", temp->line);
 			node_array->rooms[j] = create_node(temp->line);
 			j++;
 		}
@@ -141,7 +148,9 @@ t_log *create_node_array(t_data *raw_data)
 		i++;
 	}
 	if (!validate_links(node_array, temp))
-	{	// free erryting
+	{
+		free_map(node_array);
+		free_data(raw_data);
 		LINK_ERR;
 	}
 	create_links(node_array, raw_data, i);

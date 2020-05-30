@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/24 17:32:16 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/29 08:43:20 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 	ft_putstr_fd("Error: Room names wrong\n", 2); \
 	exit(2);                                      \
 }
-#define LINK_ERR                                  \
-{                                               \
-	ft_putstr_fd("Error: Room links wrong\n", 2); \
-	exit(2);                                      \
+#define LINK_ERR                                 	\
+{                                               	\
+	ft_putstr_fd("Error: Room links wrong\n", 2);	\
+	exit(2);										\
 }
 #define XY_ERR                                          \
 {                                                     \
@@ -33,11 +33,15 @@
 #define ORDER_ERR									\
 {													\
 	ft_putstr_fd("Error: Input order wrong\n", 2);	\
-	exit(2);										\
+	return (0);										\
 }
 #define SOLVE_ERR								\
 {												\
 	ft_putstr_fd("Error: Cannot solve\n", 2);	\
+}
+#define ANT_ERR								\
+{												\
+	ft_putstr_fd("Error: Ant amount is not valid\n", 2);	\
 	exit(2);									\
 }
 #include "../libft/libft.h"
@@ -70,7 +74,6 @@ typedef struct		s_log
 	int				start_index;
 	int				end_index;
 	int				room_count;
-	t_str			*links;
 	struct	s_room	**rooms;
 }					t_log;
 
@@ -158,6 +161,6 @@ void ft_putroom(int ant_name, char *room_name);
 */
 t_path	*algo(t_log *node_array);
 void	find_path(t_log *data);
-t_links *find_least_visited(t_links *room_links);
+t_room *find_least_visited(t_links *room_links);
 
 #endif
