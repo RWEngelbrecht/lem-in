@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 07:23:10 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/09/09 09:09:00 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/24 11:50:03 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,40 @@
 **	functions from other files to complete the game.
 */
 
-#include "libft/libft.h"
-
+#include "../libft/libft.h"
+#include "../includes/colony.h"
 
 #include <stdio.h>
 
-
-int		is_command(char * line)
+t_data		*read_input(char *line)
 {
-	if (ft_strnequ(line, "##", 2))
-		return (1);
-	return (0);
-}
+	t_data *raw_data;
+	t_data *temp_data;
+	t_data *temp;
 
-int		read_input(char ** line)
-{
-	int start;
-	int end;
-
-	start = 0;
-	end = 0;
-	while (get_next_line(0, line))
+	raw_data = NULL;
+	while (get_next_line(0, &line))
 	{
-		if (is_command(*line))
+		if (ft_iswhitespace(line[0]) || ft_strequ(line, ""))
 		{
-			printf("this is how it works, I guess\n");
+			free(line);
+			free_data(raw_data);
+			ft_putstr("ERROR: Only whitespace in line\n");
+			return (NULL);
 		}
+		temp = (t_data *)malloc(sizeof(t_data));
+		temp->line = ft_strdup(line);
+		temp->next = NULL;
+		if (!raw_data)
+			raw_data = temp;
+		else
+		{
+			temp_data = raw_data;
+			while (temp_data->next)
+				temp_data = temp_data->next;
+			temp_data->next = temp;
+		}
+		free(line);
 	}
-	return (0);
+	return (raw_data);
 }

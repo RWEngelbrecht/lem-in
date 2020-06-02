@@ -1,0 +1,12 @@
+23
+room0 0 0
+room5 0 1
+##start
+stRoom 5 1
+room3 0 9
+##end
+Room4 8 7
+stRoom-room3
+room3-Room4
+Room4-room0
+room0-room5
